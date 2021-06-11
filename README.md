@@ -1,4 +1,4 @@
-# "CREATE AUCTION HOUSE"
+# Create Auction House ☼☽
 
 ## Features
 1. uses `@zoralabs/nft-components`
