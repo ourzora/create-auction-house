@@ -1,10 +1,14 @@
 # Create Auction House ☼☽
 
+This is an repo to bootstrap creating your own auction house with the Zora protocol.
+
+https://zora.mirror.xyz/UwQwplCMEe1T5eUkp0CpTDJjZXvAK3eeakskTaQe3pE
+
 ## Features
-1. uses (`@zoralabs/nft-components`)[github.com/ourzora/nft-components]
-3. uses `@emotion`: (emotion.sh/)[https://emotion.sh]
+1. uses [`@zoralabs/nft-components`](github.com/ourzora/nft-components)
+3. uses `@emotion`: [emotion.sh](https://emotion.sh)
 4. uses `typescript`
-5. based on (next.js)[https://nextjs.org/]
+5. based on [next.js](https://nextjs.org/)
 
 ## Develop
 
