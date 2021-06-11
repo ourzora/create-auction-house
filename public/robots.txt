@@ -1,0 +1,7 @@
+User-agent: Twitterbot
+Disallow: 
+Allow: /imgs/*
+Allow: /icons/*
+
+User-agent: *
+Disallow:
