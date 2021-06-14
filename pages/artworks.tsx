@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { mqMain } from './../lib/breakpoints'
 
 import Head from '../components/head'
+import { NetworkIDs } from '@zoralabs/nft-hooks';
 
 const strings = {
   CARD_CREATED_BY: 'Artist name'
@@ -46,9 +47,7 @@ export default function Artworks() {
       <Head title="Gallery"/>
       <div css={Styles.auctionListWrapper}>
         <MediaConfiguration
-          /* Need to configure network variable - as string - to pass typecheck for networkId
-          // @ts-ignore */
-          networkId={process.env.NEXT_PUBLIC_NETWORK as string}
+          networkId={process.env.NEXT_PUBLIC_NETWORK as NetworkIDs}
           style={styles}
           strings={strings}
         >

@@ -1,52 +1,67 @@
-import { NFTFullPage, FullComponents, MediaConfiguration } from "@zoralabs/nft-components";
-import { useRouter } from 'next/router'
-import { css } from '@emotion/react'
-import { MediaFetchAgent } from "@zoralabs/nft-hooks";
-import { GetServerSideProps } from 'next'
+import {
+  NFTFullPage,
+  FullComponents,
+  MediaConfiguration,
+} from "@zoralabs/nft-components";
+import { useRouter } from "next/router";
+import { css } from "@emotion/react";
+import {
+  MediaFetchAgent,
+  NetworkIDs,
+  FetchStaticData,
+} from "@zoralabs/nft-hooks";
+import { GetServerSideProps } from "next";
 
-import Head from './../../components/head'
-import { mqMain } from './../../lib/breakpoints'
+import Head from "./../../components/head";
+import { mqMain } from "./../../lib/breakpoints";
 
 const strings = {
-  CREATOR: 'Artist name'
-}
+  CREATOR: "Artist name",
+};
 
 const styles = {
   theme: {
-    bodyFont: 'var(--font-a)',
-    borderStyle: 'none',
+    bodyFont: "var(--font-a)",
+    borderStyle: "none",
     buttonColor: {
-      background: 'transparent',
-      primaryBackground: 'transparent',
-      primaryText: 'var(--black)',
-      text: 'var(--black)'
+      background: "transparent",
+      primaryBackground: "transparent",
+      primaryText: "var(--black)",
+      text: "var(--black)",
     },
     defaultBorderRadius: 0,
     fontSizeFull: 15,
-    headerFont: 'var(--font-a)',
+    headerFont: "var(--font-a)",
     lineSpacing: 24,
-    linkColor: 'var(--black)',
+    linkColor: "var(--black)",
     mediaContentFont: {
-      fontFamily: 'var(--courier)'
+      fontFamily: "var(--courier)",
     },
     previewCard: {
-      background: 'transparent',
-      height: '100%',
-      width: '100%'
+      background: "transparent",
+      height: "100%",
+      width: "100%",
     },
-    textBlockPadding: 'var(--space-sm) 0',
-    titleFont: 'var(--courier)'
-  }
-}
+    textBlockPadding: "var(--space-sm) 0",
+    titleFont: "var(--courier)",
+  },
+};
 
 type PieceProps = {
-  name: string,
-  description: string,
-  image: string
-}
+  name: string;
+  description: string;
+  image: string;
+  initialData: any;
+};
 
-export default function Piece({ name, description, image }: PieceProps) {
-  const {query} = useRouter();
+export default function Piece({
+  name,
+  description,
+  image,
+  initialData,
+}: PieceProps) {
+  const { query } = useRouter();
+
   return (
     <>
       <Head
@@ -56,13 +71,11 @@ export default function Piece({ name, description, image }: PieceProps) {
       />
       <div css={Styles.fullPageWrapper}>
         <MediaConfiguration
-          /* Need to configure network variable - as string - to pass typecheck for networkId
-          // @ts-ignore */
-          networkId={process.env.NEXT_PUBLIC_NETWORK as string}
+          networkId={process.env.NEXT_PUBLIC_NETWORK as NetworkIDs}
           style={styles}
           strings={strings}
         >
-          <NFTFullPage id={query.id as string}>
+          <NFTFullPage id={query.id as string} initialData={initialData}>
             <FullComponents.MediaFull />
             <div css={Styles.infoWrapper}>
               <div css={Styles.colA}>
@@ -84,42 +97,36 @@ export default function Piece({ name, description, image }: PieceProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const fetcher = new MediaFetchAgent(
+    process.env.NEXT_PUBLIC_NETWORK as NetworkIDs
+  );
 
-  /* @ts-ignore */
-  // Need to configure env vars to pass typecheck for MediaFetchAgent
-  const fetcher = new MediaFetchAgent(process.env.NEXT_PUBLIC_NETWORK as string);
-
-  /* @ts-ignore */
-  // Need to configure params.id to pass typecheck for loadZNFTData
-  const nft = await fetcher.loadZNFTData(params.id as string);
-  const metadata = await fetcher.fetchIPFSMetadata(nft.nft.metadataURI);
-
-  function prepareJson(json: object) {
-    return JSON.parse(JSON.stringify(json));
+  if (!params?.id || params.id.length) {
+    return { notFound: true };
   }
 
-  const nftData = prepareJson({
-    ...nft,
-    ...metadata
-  })
+  const id = params.id as string;
 
-  if (!nft) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
+  const data = await FetchStaticData.fetchNFTData({
+    tokenId: id,
+    fetchAgent: fetcher,
+  });
+
+  const { name, description } = data.metadata;
 
   return {
     props: {
-      name: nftData.name,
-      description: nftData.description,
-      image: nftData.zoraNFT.contentURI
-    }
-  }
-}
+      id,
+      name,
+      description,
+      image:
+        "zoraNFT" in data.nft
+          ? data.nft.zoraNFT.contentURI
+          : data.metadata.image_uri,
+      initialData: data,
+    },
+  };
+};
 
 const Styles = {
   fullPageWrapper: css`
@@ -129,20 +136,20 @@ const Styles = {
     * {
       font-weight: 300;
     }
-    ${mqMain ({
-      padding: ['var(--space-md) var(--space-sm)', '0 5vw 5vw']
+    ${mqMain({
+      padding: ["var(--space-md) var(--space-sm)", "0 5vw 5vw"],
     })}
     .zora-fullMediaWrapper {
       margin: 0;
-      ${mqMain ({
-        padding: ['var(--space-md)', '5vw']
+      ${mqMain({
+        padding: ["var(--space-md)", "5vw"],
       })}
     }
     .zora-fullLabel {
       font-size: var(--text-01);
       font-family: var(--font-a);
       opacity: 1;
-      text-transform: capitalize!important;
+      text-transform: capitalize !important;
     }
     .zora-infoContainer {
       margin: 0;
@@ -191,9 +198,12 @@ const Styles = {
     * {
       margin: 0;
     }
-    ${mqMain ({
-      gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'],
-      padding: ['var(--space-md) var(--space-sm) var(--space-xl)', '0 0 var(--space-xxl)']
+    ${mqMain({
+      gridTemplateColumns: ["1fr", "1fr", "1fr 1fr"],
+      padding: [
+        "var(--space-md) var(--space-sm) var(--space-xl)",
+        "0 0 var(--space-xxl)",
+      ],
     })}
   `,
   colA: css`
@@ -211,9 +221,9 @@ const Styles = {
     }
     .zora-fullPageHistoryItemDatestamp {
       font-family: var(--font-a);
-      font-size: var(--text-01)!important;
+      font-size: var(--text-01) !important;
       opacity: 1;
-      padding-bottom: .5rem;
+      padding-bottom: 0.5rem;
     }
     .zora-fullTitle,
     .zora-fullOwnerAddress,
@@ -242,4 +252,4 @@ const Styles = {
       line-height: 1.3;
     }
   `,
-}
+};
