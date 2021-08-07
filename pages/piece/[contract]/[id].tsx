@@ -8,7 +8,7 @@ import {
 } from "@zoralabs/nft-hooks";
 import { GetServerSideProps } from "next";
 
-import Head from "./../../components/head";
+import Head from "../../../components/head";
 
 const styles = {
   theme: {
@@ -65,11 +65,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (!params?.id || Array.isArray(params.id)) {
     return { notFound: true };
   }
+  if (!params?.contract || Array.isArray(params.contract)) {
+    return { notFound: true };
+  }
 
   const id = params.id as string;
+  const contract = params.contract as string;
 
   const data = await FetchStaticData.fetchNFTData({
     tokenId: id,
+    contractAddress: contract,
     fetchAgent: fetcher,
   });
 
@@ -81,9 +86,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       name,
       description,
       image:
-        "zoraNFT" in data.nft
+        ("zoraNFT" in data.nft
           ? data.nft.zoraNFT.contentURI
-          : data.metadata.image_uri,
+          : data.metadata.image_uri) || null,
       initialData: data,
     },
   };

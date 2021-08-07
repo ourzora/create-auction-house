@@ -16,8 +16,8 @@ export default function Artworks() {
         >
           <AuctionHouseList
             curatorIds={[process.env.NEXT_PUBLIC_CURATORS_ID as string]}
-            onClick={(_, { tokenId }) => {
-              router.push(`/piece/${tokenId}`);
+            onClick={(_: any, { tokenId, tokenContract }: any) => {
+              router.push(`/piece/${tokenContract}/${tokenId}`);
             }}
           />
         </MediaConfiguration>

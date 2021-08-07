@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
-    "@zoralabs/nft-components": "^0.0.20",
-    "@zoralabs/nft-hooks": "^0.4.3",
+    "@zoralabs/nft-components": "^0.1.5-pre5",
+    "@zoralabs/nft-hooks": "^0.4.7-pre2",
     "classnames": "^2.3.1",
     "facepaint": "^1.2.1",
     "next": "10.2.3",
