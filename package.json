@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
+    "@zoralabs/manage-auction-hooks": "^0.0.6",
     "@zoralabs/nft-components": "^0.1.6",
-    "@zoralabs/nft-hooks": "^0.4.7-pre2",
+    "@zoralabs/nft-hooks": "^0.4.8",
+    "@zoralabs/simple-wallet-provider": "^0.0.5",
     "classnames": "^2.3.1",
-    "facepaint": "^1.2.1",
     "next": "10.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",
-    "@types/facepaint": "^1.2.1",
     "@types/react": "17.0.9",
     "typescript": "4.3.2"
   }
