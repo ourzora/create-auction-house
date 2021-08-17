@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@zoralabs/manage-auction-hooks": "^0.0.6",
     "@zoralabs/nft-components": "^0.1.6",
     "@zoralabs/nft-hooks": "^0.4.8",
