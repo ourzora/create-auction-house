@@ -2,7 +2,7 @@
 
 This is an repo to bootstrap creating your own auction house with the Zora protocol.
 
-https://zora.mirror.xyz/UwQwplCMEe1T5eUkp0CpTDJjZXvAK3eeakskTaQe3pE
+[Read More on Mirror](https://zora.mirror.xyz/UwQwplCMEe1T5eUkp0CpTDJjZXvAK3eeakskTaQe3pE)
 
 ## Features
 1. uses [`@zoralabs/nft-components`](github.com/ourzora/nft-components)

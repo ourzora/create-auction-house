@@ -1,24 +1,16 @@
-import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import Head from '../components/head'
+import { PageWrapper } from '../styles/components'
 
 export default function Home() {
   return (
-    <>
+    <IndexWrapper>
       <Head/>
-      <h1 css={Styles.headline}>
-        <span>{process.env.NEXT_PUBLIC_APP_TITLE}</span>
-      </h1>
-    </>
+      <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
+    </IndexWrapper>
   )
 }
 
-const Styles = {
-  headline: css`
-    font-size: 10vmin;
-    width: 100%;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `
-}
+const IndexWrapper = styled(PageWrapper)`
+  max-width: var(--content-width-xl);
+`

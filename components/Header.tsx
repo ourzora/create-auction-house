@@ -6,10 +6,10 @@ export default function Header() {
     <>
       <header css={Styles.header}>
         <NavLink passHref href="/">
-          <a>Home</a>
+          <a>Auctions</a>
         </NavLink>
-        <NavLink passHref href="/artworks">
-          <a>Gallery</a>
+        <NavLink passHref href="/about">
+          <a>About</a>
         </NavLink>
       </header>
     </>
