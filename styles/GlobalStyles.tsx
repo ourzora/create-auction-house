@@ -36,13 +36,14 @@ export default function GlobalStyles() {
 
           /* LAYOUT */
           --header-z: 100;
-          --header-height: calc(var(--base-unit) * 8);
-          --footer-height: calc(var(--base-unit) * 6);
+          --header-height: calc(var(--base-unit) * 10);
+          --footer-height: calc(var(--base-unit) * 10);
           --content-width-md: 960px;
           --content-width-lg: 1240px;
           --content-width-xl: ${returnBreakpoint('desktop')};
         }
 
+        /* MEDIA QUERY MIXIN */
         ${media.laptop`
           :root {
             --base-unit: 10px;
@@ -50,6 +51,7 @@ export default function GlobalStyles() {
         `}
 
         /* DEFAULTS */
+        /* LAYOUT */
         body * {
           color: var(--black);
           font-family: var(--font-a)!important;
@@ -59,51 +61,50 @@ export default function GlobalStyles() {
           width: 100%;
           overflow-x: hidden;
           position: relative;
+          min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
         }
 
+        header,
+        footer {
+          font-size: var(--text-02);
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 var(--space-md);
+          a {
+            text-decoration: none;
+            &.active {
+              text-decoration: underline;
+            }
+            ${media.hover`
+              text-decoration: underline;
+            `}
+          }
+        }
 
         /* TYPOGRPAHY */
         h1,h2,h3,h4,h5,h6 {
           font-weight: 500;
         }
-
         h1 {
           font-size: var(--text-05);
           line-height: 1;
           text-align: center;
           padding: var(--space-md) 0 var(--space-lg);
         }
-
         h2 {
           font-size: var(--text-03);
           padding: var(--space-sm) 0;
         }
-
+        a {
+          font-weight: 300;
+        }
         p,ol,ul {
           font-size: var(--text-02);
           padding-bottom: var(--space-sm);
           line-height: 1.35;
           font-weight: 300;
-        }
-        ol {
-          padding-left: var(--space-sm);
-          list-style: number;
-        }
-        /* CODE */
-        pre {
-          font-size: var(--text-01)!important;
-          text-align: start;
-          padding: var(--base-unit);
-          margin-bottom: var(--space-sm);
-          line-height: 1.45;
-          border-radius: 5px;
-          background-color: var(--bg-color);
-          color: var(--black)!important;
-          overflow-x: scroll;
-          position: relative;
-          code {
-            font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace!important;
-          }
         }
       `}
     />

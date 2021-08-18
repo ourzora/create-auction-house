@@ -31,6 +31,25 @@ export default function MarkdownWrapper({ markdown, styleOverrides }: MarkdownWr
         text-decoration: underline;
         display: inline-block;
       }
+      ol {
+        padding-left: var(--space-sm);
+        list-style: number;
+      }
+      pre {
+        font-size: var(--text-01)!important;
+        text-align: start;
+        padding: var(--base-unit);
+        margin-bottom: var(--space-sm);
+        line-height: 1.45;
+        border-radius: 5px;
+        background-color: var(--bg-color);
+        color: var(--black)!important;
+        overflow-x: scroll;
+        position: relative;
+        code {
+          font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace!important;
+        }
+      }
     `, styleOverrides]}>
       {
         unified()
