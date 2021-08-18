@@ -19,7 +19,6 @@ const CLIENT_INFO = {
   icons: [],
 };
 
-
 export default function CreateAuctionHouseApp({
   Component,
   pageProps
