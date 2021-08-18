@@ -1,5 +1,4 @@
 import { NFTFullPage, MediaConfiguration } from "@zoralabs/nft-components";
-import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import {
   MediaFetchAgent,
@@ -8,6 +7,7 @@ import {
 } from "@zoralabs/nft-hooks";
 import { GetServerSideProps } from "next";
 
+import { PageWrapper } from "../../../styles/components";
 import Head from "../../../components/head";
 
 const styles = {
@@ -45,13 +45,9 @@ export default function Piece({
         networkId={process.env.NEXT_PUBLIC_NETWORK as NetworkIDs}
         style={styles}
       >
-        <div
-          css={css`
-            margin: 30px;
-          `}
-        >
+        <PageWrapper>
           <NFTFullPage id={query.id as string} initialData={initialData} />
-        </div>
+        </PageWrapper>
       </MediaConfiguration>
     </>
   );

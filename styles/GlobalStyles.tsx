@@ -53,7 +53,6 @@ export default function GlobalStyles() {
         /* DEFAULTS */
         /* LAYOUT */
         body * {
-          color: var(--black);
           font-family: var(--font-a)!important;
         }
 
@@ -74,6 +73,7 @@ export default function GlobalStyles() {
           padding: 0 var(--space-md);
           a {
             text-decoration: none;
+            color: var(--black);
             &.active {
               text-decoration: underline;
             }
