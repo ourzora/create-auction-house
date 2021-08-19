@@ -2,32 +2,26 @@ import styled from '@emotion/styled'
 import Head from '../components/head'
 import { PageWrapper } from '../styles/components'
 import { GetStaticProps } from 'next'
-import { fetchTokens } from '../data/fetchTokens'
+import { fetchItems } from '../data/fetchItems'
 
-import { AuctionsList } from '../components/AuctionsList'
-// import { IndexerAuctionList } from '../components/IndexerAuctionList'
-// import { AuctionHouseList } from '@zoralabs/nft-components'
+import { AuctionsList } from '../components/blitmaps'
 
 export default function Home({ tokens }: { tokens: any }) {
   return (
     <IndexWrapper>
       <Head/>
       <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
-      <AuctionsList />
-      {/*<IndexerAuctionList initialData={{ tokens }}/>
-      <AuctionHouseList
-        curatorIds={[process.env.NEXT_PUBLIC_CURATORS_ID as string]}
-      />*/}
+      <AuctionsList initialData={{ tokens }} />
     </IndexWrapper>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetchTokens(undefined, undefined);
-  console.log('data', data)
+  const data = await fetchItems(undefined, undefined);
+
   return {
     props: {
-      tokens: /*data.tokens*/null,
+      tokens: data.tokens,
     },
     revalidate: 30,
   };

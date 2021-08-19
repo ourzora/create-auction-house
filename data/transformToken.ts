@@ -12,6 +12,7 @@ export function transformToken(token: any): NFTDataContextType {
   const metadata = token.metadata.json;
   return {
     nft: {
+      blitmapInfo: token.blitmapInfo,
       data: {
         pricing: {
           status: AuctionStateInfo.RESERVE_AUCTION_ENDED,
@@ -38,7 +39,7 @@ export function transformToken(token: any): NFTDataContextType {
       metadata: {
         // title: metadata.title,
         // description: metadata.description,
-        // image: `https://market.blitmap.com/blitmaps-32/${token.tokenId}.png`,//metadata.image,
+        image: `https://market.blitmap.com/blitmaps-32/${token.tokenId}.png`,//metadata.image,
       },
       loading: false,
     },

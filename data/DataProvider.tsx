@@ -4,9 +4,10 @@ import {
   addAuctionInformation,
   auctionDataToPricing,
 } from "@zoralabs/nft-hooks/dist/fetcher/TransformFetchResults";
-import { ReactNode, useContext } from "react";
+import { ReactNode, useCallback, useContext } from "react";
 import useSWR from "swr";
 import { transformToken } from "./transformToken";
+import { fetcher as jsonFetcher } from "./fetcher";
 
 export const DataProvider = ({
   initialData,
@@ -21,6 +22,15 @@ export const DataProvider = ({
 }) => {
   const fetcher = useContext(NFTFetchContext);
   const contractAddress = process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS;
+
+  // const { data: mediaData, error } = useSWR(
+  //   `/api/items?id=${tokenId}`,
+  //   async (url) => {
+  //     const result = await jsonFetcher(url) 
+  //     return result.tokens[0]
+  //   },
+  //   {initialData}
+  // );
   const mediaData = initialData;
 
   const auctionData = useSWR(

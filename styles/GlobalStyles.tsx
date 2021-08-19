@@ -1,5 +1,5 @@
 import { Global, css } from '@emotion/react'
-import { media } from './mixins'
+import { media, buttonStyle } from './mixins'
 import { returnBreakpoint } from './breakpoints'
 
 export default function GlobalStyles() {
@@ -98,13 +98,18 @@ export default function GlobalStyles() {
           padding: var(--space-sm) 0;
         }
         a {
-          font-weight: 300;
+          font-weight: 400;
         }
         p,ol,ul {
           font-size: var(--text-02);
           padding-bottom: var(--space-sm);
           line-height: 1.35;
-          font-weight: 300;
+          font-weight: 400;
+        }
+
+        /* CUSTOM */
+        .button {
+          ${buttonStyle};
         }
       `}
     />
