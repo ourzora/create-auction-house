@@ -33,11 +33,13 @@ export const TokenThumbnail = ({
     >
       <div
         key={token.tokenId}
+        /*
         className={`thumbnail-wrapper ${!listed ? "not-listed" : ""} ${
           token.auctions &&
           token.auctions.length > 0 &&
           (token.auctions[0].bidEvents.length > 0 ? "auction-live" : "listed")
         }`}
+        */
         {...wrapperLink}
       >
         <MediaThumbnailWrapper {...wrapperLink}>

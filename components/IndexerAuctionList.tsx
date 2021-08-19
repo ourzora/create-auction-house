@@ -1,7 +1,8 @@
-import { MediaConfiguration, MediaRenderers } from "@zoralabs/nft-components";
-import useSWR from "swr";
+import { MediaConfiguration, MediaRenderers } from '@zoralabs/nft-components'
+import useSWR from 'swr'
 
-import { fetcher } from "../data/fetcher";
+// import { TokenThumbnail } from './TokenThumbnail'
+import { fetcher } from '../data/fetcher'
 
 const RenderToken = ({
   token
@@ -14,7 +15,7 @@ const RenderToken = ({
   )
 }
 
-export const AuctionsList = ({ initialData }: { initialData: any }) => {
+export const IndexerAuctionList = ({ initialData }: { initialData: any }) => {
   const { data, error } = useSWR(
     "/api/items",
     fetcher,
@@ -24,7 +25,7 @@ export const AuctionsList = ({ initialData }: { initialData: any }) => {
     },
   );
   
-  console.log(data)
+  // console.log('indexer', data)
 
   if (!data || error) {
     return <span>...</span>;
@@ -32,9 +33,12 @@ export const AuctionsList = ({ initialData }: { initialData: any }) => {
 
   return (
     <MediaConfiguration renderers={[MediaRenderers.Image]}>
-      {data && data.tokens.map((token: any) => (
+      {/*data && data.map((token: any) => (
         <RenderToken key={token.tokenId} token={token} />
-      ))}
+      ))*/}
+      {/*data && data.map((token: any) => (
+        <TokenThumbnail key={token.tokenId} token={token}/>
+      ))*/}
     </MediaConfiguration>
   );
 };
