@@ -12,6 +12,7 @@ import {
 } from "@zoralabs/nft-hooks";
 
 export default function Home({ tokens }: { tokens: any }) {
+  console.log(tokens);
   return (
     <IndexWrapper>
       <Head />
