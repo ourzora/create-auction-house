@@ -8,6 +8,7 @@ import { AuctionsList } from '../components/AuctionsList'
 import { FetchStaticData, MediaFetchAgent, NetworkIDs } from '@zoralabs/nft-hooks'
 
 export default function Home({ tokens }: { tokens: any }) {
+  console.log(tokens)
   return (
     <IndexWrapper>
       <Head/>
