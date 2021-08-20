@@ -46,15 +46,19 @@ export const media = {
   `
 }
 
-export const absoluteFullCentered = css`
-  width: 100%;
-  height: 100%;
+export const absoluteCentered = css`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
+  margin: auto!important;
+`
+
+export const absoluteFullCentered = css`
+  width: 100%;
+  height: 100%;
+  ${absoluteCentered};
 `
 
 export const buttonInit = css`
@@ -69,14 +73,23 @@ export const buttonInit = css`
 export const buttonStyle = css`
   ${buttonInit};
   border: var(--border-black);
-  color: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
+  color: var(--white);
+  background-color: var(--black);
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  padding: var(--base-unit) var(--space-md);
+  font-size: var(--text-01);
+  border-radius: 50rem;
   text-align: center;
   ${media.hover`
     background-color: var(--black);
     color: var(--white);
   `}
+`
+
+export const pixelScaleImage = css`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 `

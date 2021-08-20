@@ -1,5 +1,5 @@
 import { Global, css } from '@emotion/react'
-import { media } from './mixins'
+import { media, buttonStyle } from './mixins'
 import { returnBreakpoint } from './breakpoints'
 
 export default function GlobalStyles() {
@@ -12,7 +12,7 @@ export default function GlobalStyles() {
           --white: #fff;
           --bg-color: #f6f8fa;
           --overlay: rgba(0, 0, 0, 0.85);
-          --grid-line: var(--light-blue);
+          --overlay-light: rgba(0, 0, 0, 0.35);
           --border-black: 1px solid var(--black);
           --border-light: 1px solid #dbdbdb;
 
@@ -97,14 +97,57 @@ export default function GlobalStyles() {
           font-size: var(--text-03);
           padding: var(--space-sm) 0;
         }
+        h3 {
+          font-size: var(--text-03);
+          padding: var(--space-sm) 0;
+        }
         a {
-          font-weight: 300;
+          font-weight: 400;
         }
         p,ol,ul {
           font-size: var(--text-02);
           padding-bottom: var(--space-sm);
           line-height: 1.35;
-          font-weight: 300;
+          font-weight: 400;
+        }
+
+        /* CUSTOM */
+        .button {
+          ${buttonStyle};
+        }
+
+        /* ZORA SPECIFIC -- CLEAN UP
+           - WALLET MODAL
+        */
+        .zora-wallet-modalContent {
+          h3 {
+            font-size: var(--text-03)!important;
+            padding: 0 0 15px;
+          }
+          .zora--auction-house-modalSuccessMessage {
+            font-size: var(--text-02)!important;
+          }
+          img {
+            object-fit: contain;
+          }
+          p {
+            font-size: var(--text-02)!important;
+            padding: 0 0 10px;
+            &:last-of-type {
+              padding-bottom: 30px!important;
+            }
+          }
+          .zora--auction-house-ethAmountLabel {
+            padding-bottom: 15px;
+            font-size: var(--text-02);
+          }
+          input {
+            margin-bottom: 15px;
+          }
+          button.zora--auction-house-actionButton {
+            ${buttonStyle};
+            margin-bottom: 15px;
+          }
         }
       `}
     />
