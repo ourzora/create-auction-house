@@ -1,28 +1,43 @@
-import styled from '@emotion/styled'
-import Head from '../components/head'
-import { PageWrapper } from '../styles/components'
-import { GetStaticProps } from 'next'
-import { fetchItems } from '../data/fetchItems'
+import styled from "@emotion/styled";
+import Head from "../components/head";
+import { PageWrapper } from "../styles/components";
+import { GetStaticProps } from "next";
 
-import { AuctionsList } from '../components/blitmaps'
-import { media, buttonStyle, absoluteCentered } from '../styles/mixins'
+import { AuctionsList } from "../components/blitmaps";
+import { media, buttonStyle, absoluteCentered } from "../styles/mixins";
+import {
+  FetchStaticData,
+  MediaFetchAgent,
+} from "@zoralabs/nft-hooks";
+import { IndexerDataType } from "@zoralabs/nft-hooks/dist/fetcher/AuctionInfoTypes";
 
-export default function Home({ tokens }: { tokens: any }) {
+export default function Home({ tokens }: { tokens: IndexerDataType[] }) {
   return (
     <IndexWrapper>
-      <Head/>
+      <Head />
       <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
       <AuctionsList initialData={{ tokens }} />
     </IndexWrapper>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetchItems(undefined, undefined);
+  const fetchAgent = new MediaFetchAgent(
+    process.env.NEXT_PUBLIC_NETWORK as any
+  );
+  const tokens = await FetchStaticData.fetchZoraIndexerList(
+    fetchAgent,
+    {
+      collectionAddress: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS || "",
+      limit: 200,
+      offset: 0,
+    },
+    true
+  );
 
   return {
     props: {
-      tokens: data.tokens,
+      tokens,
     },
     revalidate: 30,
   };
@@ -40,7 +55,7 @@ const IndexWrapper = styled(PageWrapper)`
     &.not-listed {
       opacity: 0.5;
       .zora-cardLink:before {
-        content: 'Own this? List It Here!'!important;
+        content: "Own this? List It Here!" !important;
       }
     }
     &.not-listed {
@@ -49,10 +64,10 @@ const IndexWrapper = styled(PageWrapper)`
     &.auction-live {
       order: -1;
       .zora-cardLink:before {
-        content: 'Bid Now!'!important;
+        content: "Bid Now!" !important;
       }
       .zora-cardAuctionPricing {
-          background-color: var(--green)!important;
+        background-color: var(--green) !important;
       }
     }
     ${media.canHover`
@@ -65,53 +80,53 @@ const IndexWrapper = styled(PageWrapper)`
     `}
   }
   .zora-cardOuter {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 100%;
+    .zora-cardItemInfo {
+      width: 100%;
+    }
+    .blit-wrapper {
+      width: 100%;
+    }
+    .zora-cardAuctionPricing {
+      width: 100%;
+      background-color: var(--blue) !important;
+      * {
+        color: var(--white) !important;
+        opacity: 1 !important;
+      }
+    }
+    .zora-cardLink {
+      opacity: 0;
+      width: 100%;
       height: 100%;
-      .zora-cardItemInfo {
-        width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      font-size: 0;
+      &:before {
+        z-index: 10;
+        ${buttonStyle};
+        content: "Start Bidding!";
+        width: 200px;
+        height: 23px;
+        font-size: var(--text-02);
+        border: 2px solid var(--white);
+        ${absoluteCentered};
       }
-      .blit-wrapper {
-        width: 100%;
-      }
-      .zora-cardAuctionPricing {
-        width: 100%;
-        background-color: var(--blue)!important;
-        * {
-          color: var(--white)!important;
-          opacity: 1!important;
-        }
-      }
-      .zora-cardLink {
-        opacity: 0;
+      &:after {
+        content: "";
         width: 100%;
         height: 100%;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 100;
-        font-size: 0;
-        &:before {
-          z-index: 10;
-          ${buttonStyle};
-          content: 'Start Bidding!';
-          width: 200px;
-          height: 23px;
-          font-size: var(--text-02);
-          border: 2px solid var(--white);
-          ${absoluteCentered};
-        }
-        &:after {
-          content: '';
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: var(--overlay-light);
-        }
+        background-color: var(--overlay-light);
       }
     }
-`
+  }
+`;

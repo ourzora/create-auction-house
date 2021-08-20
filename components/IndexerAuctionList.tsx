@@ -8,7 +8,6 @@ const RenderToken = ({
 }: {
   token: any
 }) => {
-  console.log(token)
   return (
     <div>{token.tokenId}</div>
   )
@@ -24,8 +23,6 @@ export const AuctionsList = ({ initialData }: { initialData: any }) => {
     },
   );
   
-  console.log(data)
-
   if (!data || error) {
     return <span>...</span>;
   }

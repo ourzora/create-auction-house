@@ -46,7 +46,11 @@ export default function Piece({
         style={styles}
       >
         <PageWrapper>
-          <NFTFullPage id={query.id as string} initialData={initialData} />
+          <NFTFullPage
+            id={query.id as string}
+            initialData={initialData}
+            useBetaIndexer={true}
+          />
         </PageWrapper>
       </MediaConfiguration>
     </>
@@ -68,23 +72,26 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = params.id as string;
   const contract = params.contract as string;
 
-  const data = await FetchStaticData.fetchNFTData({
+  if (contract !== process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS) {
+    return { notFound: true };
+  }
+
+  const data = await FetchStaticData.fetchZoraIndexerItem(fetcher, {
     tokenId: id,
-    contractAddress: contract,
-    fetchAgent: fetcher,
+    collectionAddress: contract,
   });
 
-  const { name, description } = data.metadata;
+  const { name, description } = data.nft.tokenData.metadata?.json;
 
   return {
     props: {
       id,
-      name,
-      description,
+      name: name || "",
+      description: description || "",
       image:
-        ("zoraNFT" in data.nft
-          ? data.nft.zoraNFT.contentURI
-          : data.metadata.image_uri) || null,
+        (data.nft.tokenData.media
+          ? data.nft.tokenData.media.contentURI
+          : data.nft.tokenData.metadata?.json?.image_uri) || null,
       initialData: data,
     },
   };

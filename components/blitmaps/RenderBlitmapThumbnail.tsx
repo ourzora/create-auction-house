@@ -1,10 +1,25 @@
-import { PreviewComponents } from "@zoralabs/nft-components";
-import { MediaThumbnailWrapper } from "@zoralabs/nft-components/dist/nft-preview/MediaThumbnailWrapper";
+import {
+  NFTDataContext,
+  NFTPreview,
+  PreviewComponents,
+} from "@zoralabs/nft-components";
 import { useRouter } from "next/router";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useContext } from "react";
 
-import { DataProvider } from "../../data/DataProvider";
-import { css } from '@emotion/css'
+import { css } from "@emotion/css";
+
+const TokenNameComponent = () => {
+  const context = useContext(NFTDataContext);
+  return (
+    <h3
+      className={css`
+        padding: 0 15px 15px;
+      `}
+    >
+      {context?.metadata?.metadata?.name}
+    </h3>
+  );
+};
 
 export const RenderBlitmapThumbnail = ({
   token,
@@ -15,7 +30,9 @@ export const RenderBlitmapThumbnail = ({
 }) => {
   const listed = token.auctions && token.auctions.length > 0;
   const router = useRouter();
-  const linkTarget = listed ? `/nft/${token.address}/${token.tokenId}` : "/list";
+  const linkTarget = listed
+    ? `/nft/${token.address}/${token.tokenId}`
+    : "/list";
 
   const wrapperLink = linkDetails
     ? {
@@ -26,14 +43,17 @@ export const RenderBlitmapThumbnail = ({
         href: linkTarget,
       }
     : {};
+
   return (
-    <DataProvider
-      tokenId={token.tokenId}
+    <NFTPreview
       initialData={token}
-      key={token.tokenId}
+      id={token.nft.tokenData.tokenId.toString()}
+      contract={token.nft.tokenData.address}
+      key={token.nft.tokenData.tokenId}
+      useBetaIndexer={true}
     >
       <div
-        key={token.tokenId}
+        key={token.nft.tokenData.tokenId}
         className={`thumbnail-wrapper ${!listed ? "not-listed" : ""} ${
           token.auctions &&
           token.auctions.length > 0 &&
@@ -41,18 +61,14 @@ export const RenderBlitmapThumbnail = ({
         }`}
         {...wrapperLink}
       >
-        <MediaThumbnailWrapper {...wrapperLink}>
-          <PreviewComponents.MediaThumbnail />
-          <div>
-            <h3 className={css`
-              padding: 0 15px 15px;
-            `}>{token.metadata.json.name}</h3>
-          </div>
-          {token.auctions && token.auctions.length > 0 && (
-            <PreviewComponents.PricingComponent />
-          )}
-        </MediaThumbnailWrapper>
+        <PreviewComponents.MediaThumbnail />
+        <div>
+          <TokenNameComponent />
+        </div>
+        {token.auctions && token.auctions.length > 0 && (
+          <PreviewComponents.PricingComponent />
+        )}
       </div>
-    </DataProvider>
+    </NFTPreview>
   );
 };

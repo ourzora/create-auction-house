@@ -1,20 +1,18 @@
 import { MediaConfiguration, MediaRenderers } from "@zoralabs/nft-components";
+import { IndexerDataType } from "@zoralabs/nft-hooks/dist/fetcher/AuctionInfoTypes";
 import useSWR from "swr";
 
 import { fetcher } from "../../data/fetcher";
 import { RenderBlitmapThumbnail } from "./RenderBlitmapThumbnail";
 
-export const AuctionsList = ({ initialData }: { initialData: any }) => {
-  const { data, error } = useSWR(
-    "/api/items",
-    fetcher,
-    {
-      refreshInterval: 100,
-      initialData
-    },
-  );
+export const AuctionsList = ({
+  initialData,
+}: {
+  initialData: { tokens: IndexerDataType[] };
+}) => {
+  const data = initialData
 
-  if (!data || error) {
+  if (!data) {
     return <span>...</span>;
   }
 
@@ -24,8 +22,9 @@ export const AuctionsList = ({ initialData }: { initialData: any }) => {
         css={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
         {data &&
+          data.tokens &&
           data.tokens.map((token: any) => (
-            <RenderBlitmapThumbnail key={token.tokenId} token={token} />
+            <RenderBlitmapThumbnail key={token.nft.tokenData.tokenId} token={token} />
           ))}
       </div>
     </MediaConfiguration>

@@ -1,9 +1,13 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import {
   AuctionManager,
   useManageAuction,
 } from "@zoralabs/manage-auction-hooks";
-import { NFTDataContext, PreviewComponents } from "@zoralabs/nft-components";
+import {
+  NFTDataContext,
+  NFTPreview,
+  PreviewComponents,
+} from "@zoralabs/nft-components";
 import {
   useWalletButton,
   useWeb3Wallet,
@@ -15,8 +19,8 @@ import { DataProvider } from "../data/DataProvider";
 import { fetcher } from "../data/fetcher";
 
 import Head from "../components/head";
-import { PageWrapper } from './../styles/components'
-import { buttonStyle } from '../styles/mixins';
+import { PageWrapper } from "./../styles/components";
+import { buttonStyle } from "../styles/mixins";
 
 const ListItemComponent = () => {
   const {
@@ -34,12 +38,15 @@ const ListItemComponent = () => {
     data.pricing.reserve?.status === "Pending"
   ) {
     return (
-      <button className="button" onClick={() => {
-        const reserveId = data.pricing.reserve?.id
-        if (reserveId) {
-          openManageAuction(parseInt(reserveId, 10));
-        }
-      }}>
+      <button
+        className="button"
+        onClick={() => {
+          const reserveId = data.pricing.reserve?.id;
+          if (reserveId) {
+            openManageAuction(parseInt(reserveId, 10));
+          }
+        }}
+      >
         Manage
       </button>
     );
@@ -48,7 +55,6 @@ const ListItemComponent = () => {
   return (
     <button
       onClick={() => {
-        console.log(data.nft.contract.address, data.nft.tokenId);
         openListAuction(data.nft.contract.address, data.nft.tokenId);
       }}
       className="button"
@@ -63,7 +69,11 @@ const ConnectWallet = () => {
 
   return (
     <div>
-      <h1>{`${connectedInfo === undefined ? 'To List your NFT Connect your wallet!' : connectedInfo}`}</h1>
+      <h1>{`${
+        connectedInfo === undefined
+          ? "To List your NFT Connect your wallet!"
+          : connectedInfo
+      }`}</h1>
       <button className="button" onClick={() => buttonAction()}>
         {actionText}
       </button>
@@ -83,7 +93,7 @@ const RenderOwnedList = ({ account }: { account: string }) => {
     return <Fragment />;
   }
 
-  if (data.tokens.length === 0) {
+  if (data && data.tokens.length === 0) {
     return (
       <div className="owned-list-no-tokens">
         <h2>We couldn’t find any NFTs you own 😢</h2>
@@ -93,20 +103,22 @@ const RenderOwnedList = ({ account }: { account: string }) => {
   }
 
   return data.tokens.map((token: any) => (
-    <DataProvider
-      key={token.tokenId}
-      tokenId={token.tokenId}
+    <NFTPreview
+      key={token.nft.tokenData.tokenId}
+      id={token.nft.tokenData.tokenId.toString()}
+      contract={token.nft.tokenData.address}
       initialData={token}
+      useBetaIndexer={true}
     >
-      <div className='owned-list'>
-        <div className='owned-list-item'>
+      <div className="owned-list">
+        <div className="owned-list-item">
           <PreviewComponents.MediaThumbnail />
           <div className="list-component-wrapper">
             <ListItemComponent />
           </div>
         </div>
       </div>
-    </DataProvider>
+    </NFTPreview>
   ));
 };
 
@@ -119,7 +131,7 @@ export default function List() {
         renderMedia={BlitmapThumbnail}
         strings={{
           LIST_MEDIA_HEADER: "List your NFT",
-          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.NEXT_PUBLIC_APP_TITLE}`
+          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.NEXT_PUBLIC_APP_TITLE}`,
         }}
       >
         <ListWrapper>
@@ -148,4 +160,4 @@ const ListWrapper = styled(PageWrapper)`
     text-align: center;
     padding-top: var(--space-sm);
   }
-`
+`;
