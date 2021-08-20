@@ -1303,10 +1303,10 @@
     swr "^0.5.6"
     tslib "^2.2.0"
 
-"@zoralabs/nft-hooks@0.5.0-pre1":
-  version "0.5.0-pre1"
-  resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.5.0-pre1.tgz#e86946d76c0d6da70cce4f7f5879cf74ff36bdad"
-  integrity sha512-tUz4ld9Y7E/Lo6Y2wKg2LuA/SjWnhoepLtElgubNwwT4NX0+tV+H3Wt74z3FSd70ndsmUk0sFChI5LnrBYW4sA==
+"@zoralabs/nft-hooks@0.5.0-pre3":
+  version "0.5.0-pre3"
+  resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.5.0-pre3.tgz#961cfdc5ad2bb061600675a545493f20df94559b"
+  integrity sha512-V4rBvztRbHwnDD4YA7c2a/VyiRiIDJexHEVss5lFE2+NZULthrZQmzjkuO5W6cgELzHVLl1NJR3AL+8OVcI4BA==
   dependencies:
     "@ethersproject/address" "^5.4.0"
     big.js "^6.1.0"

@@ -12,7 +12,6 @@ import {
 } from "@zoralabs/nft-hooks";
 
 export default function Home({ tokens }: { tokens: any }) {
-  console.log(tokens);
   return (
     <IndexWrapper>
       <Head />
@@ -28,8 +27,7 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
     curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as string,
-    collectionAddress: process.env
-      .NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
+    collectionAddress: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
     limit: 100,
     offset: 0,
   });
