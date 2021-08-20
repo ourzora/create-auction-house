@@ -5,29 +5,29 @@ import { GetStaticProps } from 'next'
 import { fetchTokens } from '../data/fetchTokens'
 
 import { AuctionsList } from '../components/AuctionsList'
-// import { IndexerAuctionList } from '../components/IndexerAuctionList'
-// import { AuctionHouseList } from '@zoralabs/nft-components'
+import { FetchStaticData, MediaFetchAgent, NetworkIDs } from '@zoralabs/nft-hooks'
 
 export default function Home({ tokens }: { tokens: any }) {
   return (
     <IndexWrapper>
       <Head/>
       <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
-      <AuctionsList />
-      {/*<IndexerAuctionList initialData={{ tokens }}/>
-      <AuctionHouseList
-        curatorIds={[process.env.NEXT_PUBLIC_CURATORS_ID as string]}
-      />*/}
+      <AuctionsList tokens={tokens} />
     </IndexWrapper>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetchTokens(undefined, undefined);
-  console.log('data', data)
+  const fetchAgent = new MediaFetchAgent(process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs);
+  const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
+    curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as string,
+    collectionAddress: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
+    limit: 100,
+  });
+
   return {
     props: {
-      tokens: /*data.tokens*/null,
+      tokens,
     },
     revalidate: 30,
   };
