@@ -11,7 +11,6 @@ import {
 } from "@zoralabs/nft-hooks";
 
 export default function Home({ tokens }: { tokens: any }) {
-  console.log(tokens);
   return (
     <IndexWrapper>
       <Head />
@@ -37,7 +36,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       tokens,
     },
-    revalidate: 30,
+    revalidate: 60,
   };
 };
 

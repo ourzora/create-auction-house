@@ -1303,7 +1303,7 @@
     swr "^0.5.6"
     tslib "^2.2.0"
 
-"@zoralabs/nft-hooks@0.5.0-pre3":
+"@zoralabs/nft-hooks@^0.5.0-pre3":
   version "0.5.0-pre3"
   resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.5.0-pre3.tgz#961cfdc5ad2bb061600675a545493f20df94559b"
   integrity sha512-V4rBvztRbHwnDD4YA7c2a/VyiRiIDJexHEVss5lFE2+NZULthrZQmzjkuO5W6cgELzHVLl1NJR3AL+8OVcI4BA==
