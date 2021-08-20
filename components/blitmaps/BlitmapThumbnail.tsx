@@ -20,8 +20,8 @@ export const BlitmapThumbnail = ({
 };
 
 const previewImageStyle = css`
-  width: 300px;
+  ${pixelScaleImage};
+  width: 100%;
   height: 300px;
   margin-bottom: 30px;
-  ${pixelScaleImage}
 `;

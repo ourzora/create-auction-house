@@ -46,15 +46,19 @@ export const media = {
   `
 }
 
-export const absoluteFullCentered = css`
-  width: 100%;
-  height: 100%;
+export const absoluteCentered = css`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
+  margin: auto!important;
+`
+
+export const absoluteFullCentered = css`
+  width: 100%;
+  height: 100%;
+  ${absoluteCentered};
 `
 
 export const buttonInit = css`
@@ -77,6 +81,7 @@ export const buttonStyle = css`
   padding: var(--base-unit) var(--space-md);
   font-size: var(--text-01);
   border-radius: 50rem;
+  text-align: center;
   ${media.hover`
     background-color: var(--black);
     color: var(--white);

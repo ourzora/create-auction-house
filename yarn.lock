@@ -1321,25 +1321,6 @@
     react "^17.0.2"
     react-device-detect "^1.17.0"
 
-"@zoralabs/simple-wallet-provider@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@zoralabs/simple-wallet-provider/-/simple-wallet-provider-0.0.5.tgz#33a93aa7540b2969c292e92cf2b5b60c0ce3b29f"
-  integrity sha512-0urP4cWLyKUfiyNMF6SIqV12FMwSSeOgcCQj1uwf5h/rJ5MyLENDwOSo40OteOBwjvpturUCL9mE49CbmgX90Q==
-  dependencies:
-    "@emotion/css" "^11.1.3"
-    "@ethersproject/providers" "^5.4.3"
-    "@ethersproject/units" "^5.4.0"
-    "@reach/dialog" "^0.16.0"
-    "@types/js-cookie" "^2.2.7"
-    "@types/react" "^17.0.15"
-    "@walletconnect/web3-provider" "^1.5.2"
-    "@web3-react/core" "^6.1.9"
-    "@web3-react/injected-connector" "^6.0.7"
-    "@web3-react/walletconnect-connector" "^6.2.4"
-    babel-polyfill "^6.26.0"
-    react "^17.0.2"
-    react-device-detect "^1.17.0"
-
 "@zoralabs/zdk@^1.2.3":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@zoralabs/zdk/-/zdk-1.2.3.tgz#dd48ecc9c2c93c5b1313d12eab68fc2ebac4aa18"

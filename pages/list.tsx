@@ -16,6 +16,7 @@ import { fetcher } from "../data/fetcher";
 
 import Head from "../components/head";
 import { PageWrapper } from './../styles/components'
+import { buttonStyle } from '../styles/mixins';
 
 const ListItemComponent = () => {
   const {
@@ -33,7 +34,7 @@ const ListItemComponent = () => {
     data.pricing.reserve?.status === "Pending"
   ) {
     return (
-      <button className="manage-button" onClick={() => {
+      <button className="button" onClick={() => {
         const reserveId = data.pricing.reserve?.id
         if (reserveId) {
           openManageAuction(parseInt(reserveId, 10));
@@ -50,7 +51,7 @@ const ListItemComponent = () => {
         console.log(data.nft.contract.address, data.nft.tokenId);
         openListAuction(data.nft.contract.address, data.nft.tokenId);
       }}
-      className="medium-button"
+      className="button"
     >
       List
     </button>
@@ -131,6 +132,18 @@ export default function List() {
 }
 
 const ListWrapper = styled(PageWrapper)`
+  .owned-list {
+    padding-top: var(--space-lg);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .owned-list-item {
+    border: 1px solid #e6e6e6;
+    margin: 15px;
+    width: 332px;
+    padding-bottom: 15px;
+  }
   .owned-list-no-tokens {
     text-align: center;
     padding-top: var(--space-sm);
