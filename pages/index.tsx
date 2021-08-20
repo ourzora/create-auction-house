@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import Head from "../components/head";
 import { PageWrapper } from "../styles/components";
 import { GetStaticProps } from "next";
-import { fetchTokens } from "../data/fetchTokens";
 
 import { AuctionsList } from "../components/AuctionsList";
 import {
@@ -28,7 +27,8 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
     curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as string,
-    collectionAddress: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
+    collectionAddress: process.env
+      .NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
     limit: 100,
     offset: 0,
   });

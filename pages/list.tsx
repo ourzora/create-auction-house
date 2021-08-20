@@ -1,31 +1,23 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import {
   AuctionManager,
   useManageAuction,
 } from "@zoralabs/manage-auction-hooks";
-import { NFTDataContext, PreviewComponents } from "@zoralabs/nft-components";
+import {
+  NFTDataContext,
+  NFTPreview,
+  PreviewComponents,
+} from "@zoralabs/nft-components";
+import { FetchStaticData } from "@zoralabs/nft-hooks";
 import {
   useWalletButton,
   useWeb3Wallet,
 } from "@zoralabs/simple-wallet-provider";
 import { Fragment, useContext } from "react";
 import useSWR from "swr";
-import { DataProvider } from "../data/DataProvider";
-import { fetcher } from "../data/fetcher";
 
 import Head from "../components/head";
-import { PageWrapper } from './../styles/components'
-
-const TestRenderToken = ({
-  token
-}: {
-  token: any
-}) => {
-  console.log(token)
-  return (
-    <div>{token.tokenId}</div>
-  )
-}
+import { PageWrapper } from "./../styles/components";
 
 const ListItemComponent = () => {
   const {
@@ -43,12 +35,15 @@ const ListItemComponent = () => {
     data.pricing.reserve?.status === "Pending"
   ) {
     return (
-      <button className="button" onClick={() => {
-        const reserveId = data.pricing.reserve?.id
-        if (reserveId) {
-          openManageAuction(parseInt(reserveId, 10));
-        }
-      }}>
+      <button
+        className="button"
+        onClick={() => {
+          const reserveId = data.pricing.reserve?.id;
+          if (reserveId) {
+            openManageAuction(parseInt(reserveId, 10));
+          }
+        }}
+      >
         Manage
       </button>
     );
@@ -57,7 +52,6 @@ const ListItemComponent = () => {
   return (
     <button
       onClick={() => {
-        console.log(data.nft.contract.address, data.nft.tokenId);
         openListAuction(data.nft.contract.address, data.nft.tokenId);
       }}
       className="button"
@@ -72,7 +66,11 @@ const ConnectWallet = () => {
 
   return (
     <div>
-      <h1>{`${connectedInfo === undefined ? 'To List your NFT Connect your wallet!' : connectedInfo}`}</h1>
+      <h1>{`${
+        connectedInfo === undefined
+          ? "To List your NFT Connect your wallet!"
+          : connectedInfo
+      }`}</h1>
       <button className="button" onClick={() => buttonAction()}>
         {actionText}
       </button>
@@ -81,7 +79,10 @@ const ConnectWallet = () => {
 };
 
 const RenderOwnedList = ({ account }: { account: string }) => {
-  const { data, error } = useSWR(`/api/ownedItems?owner=${account}`, fetcher);
+  const { data, error } = useSWR(
+    `/api/ownedItems?owner=${account}`,
+    (url: string) => fetch(url).then((res) => res.json())
+  );
 
   if (!data) {
     // loading
@@ -101,22 +102,40 @@ const RenderOwnedList = ({ account }: { account: string }) => {
     );
   }
 
-  return data.tokens.map((token: any) => (
-    <DataProvider
-      key={token.tokenId}
-      tokenId={token.tokenId}
-      initialData={token}
-    >
-      <div className='owned-list'>
-        <div className='owned-list-item'>
-          <PreviewComponents.MediaThumbnail />
-          <div className="list-component-wrapper">
-            <ListItemComponent />
+  return data.tokens.map((token: any) => {
+    const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
+    return (
+      <NFTPreview
+        key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
+        id={tokenInfo.tokenId}
+        contract={tokenInfo.tokenContract}
+        initialData={token}
+      >
+        <div className="owned-list">
+          <div className="owned-list-item">
+            <PreviewComponents.MediaThumbnail />
+            <div className="list-component-wrapper">
+              <ListItemComponent />
+            </div>
           </div>
         </div>
-      </div>
-    </DataProvider>
-  ));
+      </NFTPreview>
+    );
+  });
+};
+
+const MediaThumbnailPreview = ({
+  tokenContract,
+  tokenId,
+}: {
+  tokenContract: string;
+  tokenId: string;
+}) => {
+  return (
+    <NFTPreview contract={tokenContract} id={tokenId} useBetaIndexer={true}>
+      <PreviewComponents.MediaThumbnail />
+    </NFTPreview>
+  );
 };
 
 export default function List() {
@@ -125,10 +144,10 @@ export default function List() {
     <>
       <Head title="List" />
       <AuctionManager
-        renderMedia={TestRenderToken}
+        renderMedia={MediaThumbnailPreview}
         strings={{
           LIST_MEDIA_HEADER: "List your NFT",
-          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.NEXT_PUBLIC_APP_TITLE}`
+          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.NEXT_PUBLIC_APP_TITLE}`,
         }}
       >
         <ListWrapper>
@@ -157,4 +176,4 @@ const ListWrapper = styled(PageWrapper)`
     text-align: center;
     padding-top: var(--space-sm);
   }
-`
+`;

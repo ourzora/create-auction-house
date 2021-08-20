@@ -1,9 +1,8 @@
-import { PreviewComponents } from "@zoralabs/nft-components";
+import { NFTPreview, PreviewComponents } from "@zoralabs/nft-components";
 import { MediaThumbnailWrapper } from "@zoralabs/nft-components/dist/nft-preview/MediaThumbnailWrapper";
+import { FetchStaticData } from "@zoralabs/nft-hooks";
 import { useRouter } from "next/router";
 import { SyntheticEvent } from "react";
-
-import { DataProvider } from "../data/DataProvider";
 
 export const TokenThumbnail = ({
   token,
@@ -25,11 +24,14 @@ export const TokenThumbnail = ({
         href: linkTarget,
       }
     : {};
+  const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
   return (
-    <DataProvider
-      tokenId={token.tokenId}
+    <NFTPreview
+      key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
+      contract={tokenInfo.tokenContract}
+      id={tokenInfo.tokenId}
       initialData={token}
-      key={token.tokenId}
+      useBetaIndexer={true}
     >
       <div
         key={token.tokenId}
@@ -47,6 +49,6 @@ export const TokenThumbnail = ({
           )}
         </MediaThumbnailWrapper>
       </div>
-    </DataProvider>
+    </NFTPreview>
   );
 };
