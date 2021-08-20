@@ -1303,6 +1303,23 @@
     swr "^0.5.6"
     tslib "^2.2.0"
 
+"@zoralabs/nft-hooks@0.5.0-pre1":
+  version "0.5.0-pre1"
+  resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.5.0-pre1.tgz#e86946d76c0d6da70cce4f7f5879cf74ff36bdad"
+  integrity sha512-tUz4ld9Y7E/Lo6Y2wKg2LuA/SjWnhoepLtElgubNwwT4NX0+tV+H3Wt74z3FSd70ndsmUk0sFChI5LnrBYW4sA==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    big.js "^6.1.0"
+    cross-fetch "^3.1.4"
+    dataloader "^2.0.0"
+    graphql "^15.5.0"
+    graphql-request "^3.4.0"
+    node-abort-controller "^2.0.0"
+    react "^17.0.2"
+    react-test-renderer "^17.0.2"
+    swr "^0.5.6"
+    tslib "^2.2.0"
+
 "@zoralabs/simple-wallet-provider@^0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@zoralabs/simple-wallet-provider/-/simple-wallet-provider-0.0.4.tgz#d3417180a6bd687cf695b22e706ff9efdff4abfc"
