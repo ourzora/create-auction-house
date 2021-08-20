@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { SyntheticEvent, useContext } from "react";
 
 import { css } from "@emotion/css";
+import { NFTDataType } from "@zoralabs/nft-hooks";
 
 const TokenNameComponent = () => {
   const context = useContext(NFTDataContext);
@@ -61,7 +62,15 @@ export const RenderBlitmapThumbnail = ({
         }`}
         {...wrapperLink}
       >
-        <PreviewComponents.MediaThumbnail />
+        <PreviewComponents.MediaThumbnail
+          getContentData={(nft: NFTDataType, metadata: any) => ({
+            contentURI: undefined,
+            metadata: {
+              ...metadata,
+              image: `https://market.blitmap.com/blitmaps-32/${nft.nft.tokenId}.png`
+            },
+          })}
+        />
         <div>
           <TokenNameComponent />
         </div>

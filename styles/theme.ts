@@ -7,6 +7,9 @@ export const mediaConfigurationStyles = {
     maximumPricingDecimals: 2
   },
   styles: {
+    mediaObject: () => css`
+      image-rendering: crisp-edges;
+    `,
     /*
     fullMediaWrapper: () => css`
       margin: 0;

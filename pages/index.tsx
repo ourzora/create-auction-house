@@ -3,7 +3,7 @@ import Head from "../components/head";
 import { PageWrapper } from "../styles/components";
 import { GetStaticProps } from "next";
 
-import { AuctionsList } from "../components/blitmaps";
+import { AuctionsList } from "../components/blitmaps/AuctionList";
 import { media, buttonStyle, absoluteCentered } from "../styles/mixins";
 import {
   FetchStaticData,

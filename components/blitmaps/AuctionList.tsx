@@ -1,8 +1,5 @@
 import { MediaConfiguration, MediaRenderers } from "@zoralabs/nft-components";
 import { IndexerDataType } from "@zoralabs/nft-hooks/dist/fetcher/AuctionInfoTypes";
-import useSWR from "swr";
-
-import { fetcher } from "../../data/fetcher";
 import { RenderBlitmapThumbnail } from "./RenderBlitmapThumbnail";
 
 export const AuctionsList = ({
