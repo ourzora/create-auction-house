@@ -105,21 +105,22 @@ const RenderOwnedList = ({ account }: { account: string }) => {
   return data.tokens.map((token: any) => {
     const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
     return (
-      <NFTPreview
-        key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
-        id={tokenInfo.tokenId}
-        contract={tokenInfo.tokenContract}
-        initialData={token}
-      >
-        <div className="owned-list">
+      <div className="owned-list">
+        <NFTPreview
+          key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
+          id={tokenInfo.tokenId}
+          contract={tokenInfo.tokenContract}
+          initialData={token}
+          useBetaIndexer={true}
+        >
           <div className="owned-list-item">
             <PreviewComponents.MediaThumbnail />
             <div className="list-component-wrapper">
               <ListItemComponent />
             </div>
           </div>
-        </div>
-      </NFTPreview>
+        </NFTPreview>
+      </div>
     );
   });
 };
@@ -159,21 +160,22 @@ export default function List() {
   );
 }
 
+
+
 const ListWrapper = styled(PageWrapper)`
+  max-width: var(--content-width-lg);
   .owned-list {
-    padding-top: var(--space-lg);
+    padding-top: var(--space-md);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .owned-list-item {
-    border: 1px solid #e6e6e6;
-    margin: 15px;
-    width: 332px;
-    padding-bottom: 15px;
-  }
   .owned-list-no-tokens {
     text-align: center;
     padding-top: var(--space-sm);
+  }
+  .list-component-wrapper {
+    padding: var(--base-unit) 0;
+    border-top: var(--border-light);
   }
 `;

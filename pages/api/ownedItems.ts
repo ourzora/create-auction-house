@@ -7,8 +7,9 @@ module.exports = async (req: any, res: any) => {
   }
 
   const fetchAgent = new MediaFetchAgent(
-    process.env.NEXT_PUBLIC_NETWORK as any
+    process.env.NEXT_PUBLIC_NETWORK_ID as any
   );
+
   const tokens = await FetchStaticData.fetchUserOwnedNFTs(
     fetchAgent,
     {
@@ -19,6 +20,5 @@ module.exports = async (req: any, res: any) => {
     },
     true
   );
-
   res.status(200).json({tokens});
 };

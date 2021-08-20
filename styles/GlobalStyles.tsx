@@ -21,7 +21,7 @@ export default function GlobalStyles() {
           --font-b: Courier, monospace;
           
           /* SPACING */
-          --base-unit: 5px;
+          --base-unit: 8px;
           --space-sm: calc(var(--base-unit) * 2);
           --space-md: calc(var(--base-unit) * 3);
           --space-lg: calc(var(--base-unit) * 5);
@@ -30,23 +30,30 @@ export default function GlobalStyles() {
           --text-01: calc(var(--base-unit) * 1.5);
           --text-02: calc(var(--base-unit) * 2);
           --text-03: calc(var(--base-unit) * 3);
-          --text-04: calc(var(--base-unit) * 5);
-          --text-05: calc(var(--base-unit) * 7);
-          --text-06: 8vmin;
+          --text-04: calc(var(--base-unit) * 4);
+          --text-05: calc(var(--base-unit) * 5);
 
           /* LAYOUT */
           --header-z: 100;
           --header-height: calc(var(--base-unit) * 10);
           --footer-height: calc(var(--base-unit) * 10);
           --content-width-md: 960px;
-          --content-width-lg: 1240px;
-          --content-width-xl: ${returnBreakpoint('desktop')};
+          --content-width-lg: ${returnBreakpoint('desktop')};
+          --content-width-xl: ${returnBreakpoint('xl')};
         }
 
         /* MEDIA QUERY MIXIN */
         ${media.laptop`
           :root {
             --base-unit: 10px;
+            --text-05: calc(var(--base-unit) * 6);
+          }
+        `}
+
+        ${media.xl`
+          :root {
+            --base-unit: 11px;
+            --text-05: calc(var(--base-unit) * 7);
           }
         `}
 
