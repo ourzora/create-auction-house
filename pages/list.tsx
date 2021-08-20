@@ -15,12 +15,10 @@ import {
 import { Fragment, useContext } from "react";
 import useSWR from "swr";
 import { BlitmapThumbnail } from "../components/blitmaps/BlitmapThumbnail";
-import { DataProvider } from "../data/DataProvider";
 import { fetcher } from "../data/fetcher";
 
 import Head from "../components/head";
 import { PageWrapper } from "./../styles/components";
-import { buttonStyle } from "../styles/mixins";
 
 const ListItemComponent = () => {
   const {
