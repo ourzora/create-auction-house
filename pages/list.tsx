@@ -105,9 +105,11 @@ const RenderOwnedList = ({ account }: { account: string }) => {
   return data.tokens.map((token: any) => {
     const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
     return (
-      <div className="owned-list">
+      <div
+        className="owned-list"
+        key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
+      >
         <NFTPreview
-          key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
           id={tokenInfo.tokenId}
           contract={tokenInfo.tokenContract}
           initialData={token}
@@ -133,7 +135,12 @@ const MediaThumbnailPreview = ({
   tokenId: string;
 }) => {
   return (
-    <NFTPreview contract={tokenContract} id={tokenId} useBetaIndexer={true}>
+    // TODO(iain): Fix indexer in this use case
+    <NFTPreview
+      contract={tokenContract}
+      id={tokenId.toString()}
+      useBetaIndexer={false}
+    >
       <PreviewComponents.MediaThumbnail />
     </NFTPreview>
   );
@@ -159,8 +166,6 @@ export default function List() {
     </>
   );
 }
-
-
 
 const ListWrapper = styled(PageWrapper)`
   max-width: var(--content-width-lg);
