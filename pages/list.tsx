@@ -106,17 +106,16 @@ const RenderOwnedList = ({ account }: { account: string }) => {
     const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
     return (
       <NFTPreview
-        key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
         id={tokenInfo.tokenId}
         contract={tokenInfo.tokenContract}
         initialData={token}
+        useBetaIndexer={true}
+        key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
       >
-        <div className="owned-list">
-          <div className="owned-list-item">
-            <PreviewComponents.MediaThumbnail />
-            <div className="list-component-wrapper">
-              <ListItemComponent />
-            </div>
+        <div className="owned-list-item">
+          <PreviewComponents.MediaThumbnail />
+          <div className="list-component-wrapper">
+            <ListItemComponent />
           </div>
         </div>
       </NFTPreview>
@@ -132,8 +131,18 @@ const MediaThumbnailPreview = ({
   tokenId: string;
 }) => {
   return (
-    <NFTPreview contract={tokenContract} id={tokenId} useBetaIndexer={true}>
-      <PreviewComponents.MediaThumbnail />
+    // TODO(iain): Fix indexer in this use case
+    <NFTPreview
+      id={tokenId}
+      contract={tokenContract}
+      useBetaIndexer={true}
+    >
+      <div className="owned-list-item">
+        <PreviewComponents.MediaThumbnail />
+        <div className="list-component-wrapper">
+          <ListItemComponent />
+        </div>
+      </div>
     </NFTPreview>
   );
 };
@@ -152,7 +161,11 @@ export default function List() {
       >
         <ListWrapper>
           <ConnectWallet />
-          {account && <RenderOwnedList account={account} />}
+          {account &&
+            <div className="owned-list">
+              <RenderOwnedList account={account} />
+            </div>
+          }
         </ListWrapper>
       </AuctionManager>
     </>
@@ -160,20 +173,22 @@ export default function List() {
 }
 
 const ListWrapper = styled(PageWrapper)`
+  max-width: var(--content-width-lg);
   .owned-list {
-    padding-top: var(--space-lg);
+    padding-top: var(--space-md);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .owned-list-item {
-    border: 1px solid #e6e6e6;
-    margin: 15px;
-    width: 332px;
-    padding-bottom: 15px;
-  }
   .owned-list-no-tokens {
     text-align: center;
     padding-top: var(--space-sm);
+  }
+  .list-component-wrapper {
+    padding: var(--base-unit) 0;
+    border-top: var(--border-light);
+  }
+  .thumbnail-manage-button {
+    margin: 0 auto var(--space-sm)!important;
   }
 `;
