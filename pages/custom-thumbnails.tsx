@@ -3,7 +3,7 @@ import Head from "../components/head";
 import { PageWrapper } from "../styles/components";
 import { GetStaticProps } from "next";
 
-import { AuctionsList } from "../components/AuctionsList";
+import { CustomAuctionsList } from "../components/CustomAuctionsList";
 
 import {
   FetchStaticData,
@@ -16,7 +16,7 @@ export default function Home({ tokens }: { tokens: any }) {
     <IndexWrapper>
       <Head />
       <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
-      <AuctionsList tokens={tokens} />
+      <CustomAuctionsList tokens={tokens} />
     </IndexWrapper>
   );
 }

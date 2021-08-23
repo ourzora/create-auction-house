@@ -1,42 +1,27 @@
 import { css } from '@emotion/react'
 import { NavLink } from './NavLink'
 
-export default function Header() {
+export const Header = () => {
   return (
     <>
-      <header css={Styles.header}>
+      <header css={css`
+        height: var(--header-height);
+        position: sticky;
+        top: 0;
+        z-index: var(--header-z);
+        border-bottom: var(--border-black);
+        background-color: var(--white);
+      `}>
         <NavLink passHref href="/">
-          <a>Home</a>
+          <a>Auctions</a>
         </NavLink>
-        <NavLink passHref href="/artworks">
-          <a>Gallery</a>
+        <NavLink passHref href="/list">
+          <a>List</a>
+        </NavLink>
+        <NavLink passHref href="/about">
+          <a>About</a>
         </NavLink>
       </header>
     </>
   )
 }
-
-const Styles = {
-  header: css`
-    display: flex;
-    justify-content: center;
-    background-color: var(--white);
-    padding: var(--space-md);
-    border-bottom: var(--border-black);
-    position: sticky;
-    top: 0;
-    z-index: var(--header-z);
-    a {
-      color: var(--black);
-      font-family: var(--font-b);
-      margin-right: var(--space-md);
-      text-decoration: none;
-      &:last-child {
-        margin-right: 0;
-      }
-      &.active {
-        text-decoration: underline;
-      }
-    }
-  `
-};

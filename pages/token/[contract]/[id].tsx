@@ -1,5 +1,4 @@
 import { NFTFullPage, MediaConfiguration } from "@zoralabs/nft-components";
-import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import {
   MediaFetchAgent,
@@ -8,6 +7,7 @@ import {
 } from "@zoralabs/nft-hooks";
 import { GetServerSideProps } from "next";
 
+import { PageWrapper } from "../../../styles/components";
 import Head from "../../../components/head";
 
 const styles = {
@@ -42,26 +42,23 @@ export default function Piece({
         ogImage={image}
       />
       <MediaConfiguration
-        networkId={process.env.NEXT_PUBLIC_NETWORK as NetworkIDs}
+        networkId={process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs}
         style={styles}
       >
-        <div
-          css={css`
-            margin: 30px;
-          `}
-        >
-          <NFTFullPage id={query.id as string} initialData={initialData} />
-        </div>
+        <PageWrapper>
+          <NFTFullPage
+            useBetaIndexer={true}
+            contract={query.contract as string}
+            id={query.id as string}
+            initialData={initialData}
+          />
+        </PageWrapper>
       </MediaConfiguration>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const fetcher = new MediaFetchAgent(
-    process.env.NEXT_PUBLIC_NETWORK as NetworkIDs
-  );
-
   if (!params?.id || Array.isArray(params.id)) {
     return { notFound: true };
   }
@@ -72,23 +69,22 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = params.id as string;
   const contract = params.contract as string;
 
-  const data = await FetchStaticData.fetchNFTData({
+  const fetchAgent = new MediaFetchAgent(
+    process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
+  );
+  const data = await FetchStaticData.fetchZoraIndexerItem(fetchAgent, {
     tokenId: id,
-    contractAddress: contract,
-    fetchAgent: fetcher,
+    collectionAddress: contract,
   });
 
-  const { name, description } = data.metadata;
+  const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(data);
 
   return {
     props: {
       id,
-      name,
-      description,
-      image:
-        ("zoraNFT" in data.nft
-          ? data.nft.zoraNFT.contentURI
-          : data.metadata.image_uri) || null,
+      name: tokenInfo.metadata?.name || null,
+      description: tokenInfo.metadata?.description || null,
+      image: tokenInfo.image || null,
       initialData: data,
     },
   };
