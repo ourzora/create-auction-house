@@ -136,13 +136,29 @@ const MediaThumbnailPreview = ({
 }) => {
   return (
     // TODO(iain): Fix indexer in this use case
-    <NFTPreview
+    <>
+      <NFTPreview
+        id={tokenId}
+        contract={tokenContract}
+        // initialData={token}
+        useBetaIndexer={true}
+      >
+        <div className="owned-list-item">
+          <PreviewComponents.MediaThumbnail />
+          <div className="list-component-wrapper">
+            <ListItemComponent />
+          </div>
+        </div>
+      </NFTPreview>
+    
+    {/*<NFTPreview
       contract={tokenContract}
       id={tokenId.toString()}
       useBetaIndexer={false}
     >
       <PreviewComponents.MediaThumbnail />
-    </NFTPreview>
+    </NFTPreview>*/}
+    </>
   );
 };
 
