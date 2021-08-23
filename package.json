@@ -11,7 +11,7 @@
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@zoralabs/manage-auction-hooks": "^0.0.9",
-    "@zoralabs/nft-components": "0.1.8-pre1",
+    "@zoralabs/nft-components": "^0.1.8-pre1",
     "@zoralabs/nft-hooks": "^0.5.0-pre3",
     "@zoralabs/simple-wallet-provider": "0.0.7",
     "classnames": "^2.3.1",

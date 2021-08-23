@@ -1272,7 +1272,7 @@
     tslib "^2.0.3"
     typescript "^4.1.3"
 
-"@zoralabs/nft-components@0.1.8-pre1":
+"@zoralabs/nft-components@^0.1.8-pre1":
   version "0.1.8-pre1"
   resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.1.8-pre1.tgz#8daa60859b95cc87b6502e06a693a242bec0210c"
   integrity sha512-0zOzqBxNw4ERLOQHNcCB/T389hGVYU6HlWg3uoeuXUsk6BBw3NiBUCPzpWlhAT/W91B5cu68mwxgYT3XvEs7DQ==
