@@ -105,24 +105,20 @@ const RenderOwnedList = ({ account }: { account: string }) => {
   return data.tokens.map((token: any) => {
     const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
     return (
-      <div
-        className="owned-list"
+      <NFTPreview
+        id={tokenInfo.tokenId}
+        contract={tokenInfo.tokenContract}
+        initialData={token}
+        useBetaIndexer={true}
         key={`${tokenInfo.tokenContract}-${tokenInfo.tokenId}`}
       >
-        <NFTPreview
-          id={tokenInfo.tokenId}
-          contract={tokenInfo.tokenContract}
-          initialData={token}
-          useBetaIndexer={true}
-        >
-          <div className="owned-list-item">
-            <PreviewComponents.MediaThumbnail />
-            <div className="list-component-wrapper">
-              <ListItemComponent />
-            </div>
+        <div className="owned-list-item">
+          <PreviewComponents.MediaThumbnail />
+          <div className="list-component-wrapper">
+            <ListItemComponent />
           </div>
-        </NFTPreview>
-      </div>
+        </div>
+      </NFTPreview>
     );
   });
 };
@@ -136,29 +132,18 @@ const MediaThumbnailPreview = ({
 }) => {
   return (
     // TODO(iain): Fix indexer in this use case
-    <>
-      <NFTPreview
-        id={tokenId}
-        contract={tokenContract}
-        // initialData={token}
-        useBetaIndexer={true}
-      >
-        <div className="owned-list-item">
-          <PreviewComponents.MediaThumbnail />
-          <div className="list-component-wrapper">
-            <ListItemComponent />
-          </div>
-        </div>
-      </NFTPreview>
-    
-    {/*<NFTPreview
+    <NFTPreview
+      id={tokenId}
       contract={tokenContract}
-      id={tokenId.toString()}
-      useBetaIndexer={false}
+      useBetaIndexer={true}
     >
-      <PreviewComponents.MediaThumbnail />
-    </NFTPreview>*/}
-    </>
+      <div className="owned-list-item">
+        <PreviewComponents.MediaThumbnail />
+        <div className="list-component-wrapper">
+          <ListItemComponent />
+        </div>
+      </div>
+    </NFTPreview>
   );
 };
 
@@ -176,7 +161,11 @@ export default function List() {
       >
         <ListWrapper>
           <ConnectWallet />
-          {account && <RenderOwnedList account={account} />}
+          {account &&
+            <div className="owned-list">
+              <RenderOwnedList account={account} />
+            </div>
+          }
         </ListWrapper>
       </AuctionManager>
     </>
@@ -198,5 +187,8 @@ const ListWrapper = styled(PageWrapper)`
   .list-component-wrapper {
     padding: var(--base-unit) 0;
     border-top: var(--border-light);
+  }
+  .thumbnail-manage-button {
+    margin: 0 auto var(--space-sm)!important;
   }
 `;

@@ -4,6 +4,7 @@ import { PageWrapper } from "../styles/components";
 import { GetStaticProps } from "next";
 
 import { AuctionsList } from "../components/AuctionsList";
+
 import {
   FetchStaticData,
   MediaFetchAgent,
