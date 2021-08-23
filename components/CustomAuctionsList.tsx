@@ -76,8 +76,6 @@ const ListWrapper = css`
   flex-wrap: wrap;
   justify-content: center;
   .thumbnail-wrapper {
-    margin: 5px;
-    border: var(--border-black);
     .zora-cardOuter {
       border: 0;
       margin: 0;
@@ -144,7 +142,7 @@ const ListWrapper = css`
         content: 'Start Bidding!';
         width: 200px;
         height: 23px;
-        font-size: var(--text-02);
+        font-size: var(--text-01);
         border: 2px solid var(--white);
         ${absoluteCentered};
       }
