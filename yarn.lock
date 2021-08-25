@@ -1272,21 +1272,38 @@
     tslib "^2.0.3"
     typescript "^4.1.3"
 
-"@zoralabs/nft-components@^0.1.8-pre1":
-  version "0.1.8-pre1"
-  resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.1.8-pre1.tgz#8daa60859b95cc87b6502e06a693a242bec0210c"
-  integrity sha512-0zOzqBxNw4ERLOQHNcCB/T389hGVYU6HlWg3uoeuXUsk6BBw3NiBUCPzpWlhAT/W91B5cu68mwxgYT3XvEs7DQ==
+"@zoralabs/nft-components@0.1.8-pre2":
+  version "0.1.8-pre2"
+  resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.1.8-pre2.tgz#172ff92714f2c7ddd77bbdb41ab1f23335714d97"
+  integrity sha512-k40ohhO89M1SggvdrSo0MEb9VwWCxoo045rVTNAI5eMqXlWAfJNnsTSEBCaXEtcQphCeVIpDISsxmTg2wiaesA==
   dependencies:
     "@emotion/css" "^11.1.3"
     "@types/react" "^17.0.5"
-    "@zoralabs/nft-hooks" "0.5.0-pre3"
+    "@zoralabs/nft-hooks" "^0.5.0"
     merge-anything "^4.0.1"
     react "^17.0.2"
     react-dom "^17.0.2"
     swr "^0.5.6"
     tslib "^2.2.0"
 
-"@zoralabs/nft-hooks@0.5.0-pre3", "@zoralabs/nft-hooks@^0.5.0-pre3":
+"@zoralabs/nft-hooks@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.5.0.tgz#4abc4da4c50ef72fb9b4dee95210d4d6723627f9"
+  integrity sha512-pIsLb47N/Fvp9u0d/RZ9zfs1HrbU2mqJAqFhjSW1oaPQ7msd8c6JmE0+FMLO3TZZJ0GU6/WgYa3QWtEQ7bp+8w==
+  dependencies:
+    "@ethersproject/address" "^5.4.0"
+    big.js "^6.1.0"
+    cross-fetch "^3.1.4"
+    dataloader "^2.0.0"
+    graphql "^15.5.0"
+    graphql-request "^3.4.0"
+    node-abort-controller "^2.0.0"
+    react "^17.0.2"
+    react-test-renderer "^17.0.2"
+    swr "^0.5.6"
+    tslib "^2.2.0"
+
+"@zoralabs/nft-hooks@^0.5.0-pre3":
   version "0.5.0-pre3"
   resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.5.0-pre3.tgz#961cfdc5ad2bb061600675a545493f20df94559b"
   integrity sha512-V4rBvztRbHwnDD4YA7c2a/VyiRiIDJexHEVss5lFE2+NZULthrZQmzjkuO5W6cgELzHVLl1NJR3AL+8OVcI4BA==
