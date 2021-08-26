@@ -36,7 +36,12 @@ NEXT_PUBLIC_NETWORK_ID=1
 NEXT_PUBLIC_CURATORS_ID=[The address of a curator or creator]
 
 NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS=[the address of the token contract]
+
+NEXT_PUBLIC_RPC_URL=[address to web3 rpc url provider]
 ```
+
+If you include a rpcUrl on the manage auction hooks provider it enables walletconnect,
+without that rpcUrl walletconnect will not work work. We have set included and .env variable for this: ```NEXT_PUBLIC_RPC_URL```. [Further reading on RPC providers](https://web3py.readthedocs.io/en/stable/providers.html) / [Alchemy Etherium API Docs](https://docs.alchemy.com/alchemy/documentation/apis/ethereum).
 
 ## Develop
 

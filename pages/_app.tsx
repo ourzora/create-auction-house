@@ -21,7 +21,7 @@ export default function CreateAuctionHouseApp({
       <GlobalStyles />
       <Web3ConfigProvider
         networkId={parseInt(process.env.NEXT_PUBLIC_NETWORK_ID as string, 10)}
-        rpcUrl="https://eth-mainnet.alchemyapi.io/v2/TMmFiIhF3-KTab6spgLh-RRhm4FEWQRe"
+        rpcUrl={process.env.NEXT_PUBLIC_RPC_URL as string || undefined}
         theme={{
           walletOption: css`
             color: #000 !important;
