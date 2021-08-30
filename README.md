@@ -7,8 +7,8 @@ A repo to bootstrap your own permissionless auction house with the Zora protocol
 [More about the Zora Auction House on Mirror](https://zora.mirror.xyz/UwQwplCMEe1T5eUkp0CpTDJjZXvAK3eeakskTaQe3pE)
 
 ## Features
-1. uses [`@zoralabs/nft-components`](github.com/ourzora/nft-components) to render NFTs and auction info.
-2. includes [`@zoralabs/nft-hooks`](github.com/ourzora/nft-hooks) for more custom applications.
+1. uses [`@zoralabs/nft-components`](https://github.com/ourzora/nft-components) to render NFTs and auction info.
+2. includes [`@zoralabs/nft-hooks`](https://github.com/ourzora/nft-hooks) for more custom applications.
 3. uses [`@zoralabs/manage-auction-hooks`](https://github.com/ourzora/manage-auction-hooks) for auction interactions.
 4. uses [`@zoralabs/simple-wallet-provider`](https://github.com/ourzora/simple-wallet-provider) for an easy wallet login flow.
 5. uses `@emotion`: [emotion.sh](https://emotion.sh) for styling.
