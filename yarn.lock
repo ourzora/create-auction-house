@@ -1272,10 +1272,10 @@
     tslib "^2.0.3"
     typescript "^4.1.3"
 
-"@zoralabs/nft-components@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.1.9.tgz#636522459ea7f53c8b7d7feecb7678e13e8e4155"
-  integrity sha512-/YKKBXWRNx4za94g0RV1K2FNEt1SMgxv91DrB45slwOllqnUPHgPAv9k+mEQQu2n8OqVzxNEWb0x32owJDO8dA==
+"@zoralabs/nft-components@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.1.11.tgz#0b72284d4dbebbe552a63ad4857faa82e892907c"
+  integrity sha512-3jSbd3FVeAisPdvZeeJ8oOitJt1QSlu+0c2gULZa8u2c93DT+O8xb3AnThnqSuKImvXyxu/WCayp7vHPnACC9w==
   dependencies:
     "@emotion/css" "^11.1.3"
     "@types/react" "^17.0.5"
