@@ -26,7 +26,7 @@ const TokenThumbnail = ({
   const listed = token.auctions && token.auctions.length > 0;
   const router = useRouter();
   const linkTarget = listed ? `/${token.address}/${token.tokenId}` : "/list";
-  
+
   const wrapperLink = linkDetails
     ? {
         onClick: (evt: SyntheticEvent) => {
@@ -61,8 +61,8 @@ const TokenThumbnail = ({
         </MediaThumbnailWrapper>
       </div>
     </NFTPreview>
-  )
-}
+  );
+};
 
 // LIST THE TOKENS
 const CustomAuctionsList = ({ tokens }: { tokens: any[] }) => {
@@ -71,12 +71,7 @@ const CustomAuctionsList = ({ tokens }: { tokens: any[] }) => {
       {tokens &&
         tokens.map((token) => {
           const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
-          return (
-            <TokenThumbnail
-              token={token}
-              key={tokenInfo.tokenId}
-            />
-          );
+          return <TokenThumbnail token={token} key={tokenInfo.tokenId} />;
         })}
     </div>
   );
@@ -99,8 +94,9 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
     curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as string,
-    collectionAddress: process.env
-      .NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
+    collectionAddresses: [
+      process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
+    ],
     limit: 100,
     offset: 0,
   });
@@ -128,7 +124,7 @@ const IndexWrapper = styled(PageWrapper)`
       &.not-listed {
         opacity: 0.5;
         .zora-cardLink:before {
-          content: 'Own this? List It Here!'!important;
+          content: "Own this? List It Here!" !important;
         }
       }
       &.not-listed {
@@ -137,10 +133,10 @@ const IndexWrapper = styled(PageWrapper)`
       &.auction-live {
         order: -1;
         .zora-cardLink:before {
-          content: 'Bid Now!'!important;
+          content: "Bid Now!" !important;
         }
         .zora-cardAuctionPricing {
-            background-color: var(--green)!important;
+          background-color: var(--green) !important;
         }
       }
       ${media.canHover`
@@ -166,10 +162,10 @@ const IndexWrapper = styled(PageWrapper)`
       }
       .zora-cardAuctionPricing {
         width: 100%;
-        background-color: var(--blue)!important;
+        background-color: var(--blue) !important;
         * {
-          color: var(--white)!important;
-          opacity: 1!important;
+          color: var(--white) !important;
+          opacity: 1 !important;
         }
       }
       .zora-cardLink {
@@ -184,7 +180,7 @@ const IndexWrapper = styled(PageWrapper)`
         &:before {
           z-index: 10;
           ${buttonStyle};
-          content: 'Start Bidding!';
+          content: "Start Bidding!";
           width: 200px;
           height: 23px;
           font-size: var(--text-01);
@@ -192,7 +188,7 @@ const IndexWrapper = styled(PageWrapper)`
           ${absoluteCentered};
         }
         &:after {
-          content: '';
+          content: "";
           width: 100%;
           height: 100%;
           position: absolute;
