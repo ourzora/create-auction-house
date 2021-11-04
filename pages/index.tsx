@@ -27,10 +27,9 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const contractAddress = process.env
     .NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string;
-    console.log(process.env.NEXT_PUBLIC_CURATORS_ID)
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
     curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as any,
-    collectionAddresses: [contractAddress],
+    collectionAddresses: contractAddress ? [contractAddress] : undefined,
     limit: 100,
     offset: 0,
   });
