@@ -1247,16 +1247,16 @@
   dependencies:
     ethers "^5.0.19"
 
-"@zoralabs/manage-auction-hooks@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@zoralabs/manage-auction-hooks/-/manage-auction-hooks-0.0.10.tgz#7de28a6a6ac4dc14574a145b41dcc4f59d61c4b0"
-  integrity sha512-VEySLT9QXGKQnCU7U22h/Ki+p+CbFQED0JlErcv/xX+4sjH4SYUqcqKwSiSh70l3eDNm/T5Bon+PdQirRJtwMA==
+"@zoralabs/manage-auction-hooks@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@zoralabs/manage-auction-hooks/-/manage-auction-hooks-0.0.11.tgz#5a503845da5733080cdd139fc14540a288b1767e"
+  integrity sha512-b1vSE++LGwY6ix63iYFqAjJlN+jp7gZw4cEi6Hv5IPTFP8PMY6O+oTycxP2n0YNZlNDAp2422TNv8omHyJKrSw==
   dependencies:
     "@emotion/css" "^11.1.3"
     "@ethersproject/providers" "^5.4.3"
     "@ethersproject/units" "^5.4.0"
     "@types/react" "^17.0.15"
-    "@zoralabs/simple-wallet-provider" "^0.0.7"
+    "@zoralabs/simple-wallet-provider" "^0.0.9"
     "@zoralabs/zdk" "^1.2.3"
     react "^17.0.2"
     react-device-detect "^1.17.0"
@@ -1320,10 +1320,10 @@
     swr "^0.5.6"
     tslib "^2.2.0"
 
-"@zoralabs/simple-wallet-provider@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@zoralabs/simple-wallet-provider/-/simple-wallet-provider-0.0.7.tgz#401df7235ffbff54851eae67b4bc21dd9b6a4ccd"
-  integrity sha512-AUFhQbAUMP7juPlhNiJ3S7DQXQdtDN+PI0vxTFez/tPd2R022hIRSoLroV8JVg3miEIAZFWo/yJQJenD0T6H2g==
+"@zoralabs/simple-wallet-provider@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@zoralabs/simple-wallet-provider/-/simple-wallet-provider-0.0.9.tgz#ed4d3f376f8d3e3e4e8a8acb5437ab7ba42e05be"
+  integrity sha512-cVLG/IecuAm1odSVaguMMJTWcptV4EB8db4nLdgHpib4oh8KTUSKVFpJrtoYvjBub4zRL5A7V0tRf4Cw1aWreQ==
   dependencies:
     "@emotion/css" "^11.1.3"
     "@ethersproject/providers" "^5.4.3"
