@@ -94,9 +94,10 @@ export const getStaticProps: GetStaticProps = async () => {
   );
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
     curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as string,
-    collectionAddresses: [
-      process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
-    ],
+    collectionAddresses: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS
+      ? (process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string).split(",")
+      : undefined,
+
     limit: 100,
     offset: 0,
   });

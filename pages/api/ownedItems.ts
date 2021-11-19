@@ -14,7 +14,7 @@ module.exports = async (req: any, res: any) => {
     fetchAgent,
     {
       collectionAddresses: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS
-        ? [process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string]
+        ? (process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string).split(",")
         : undefined,
       userAddress: owner,
       limit: 200,
