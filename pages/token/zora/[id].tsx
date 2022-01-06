@@ -46,7 +46,7 @@ export default function Piece({
       >
         <PageWrapper>
           <NFTFullPage
-            useBetaIndexer={true}
+            useBetaIndexer={false}
             contract={query.contract as string}
             id={query.id as string}
             initialData={initialData}
@@ -61,30 +61,29 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (!params?.id || Array.isArray(params.id)) {
     return { notFound: true };
   }
-  if (!params?.contract || Array.isArray(params.contract)) {
-    return { notFound: true };
-  }
 
   const id = params.id as string;
-  const contract = params.contract as string;
 
   const fetchAgent = new MediaFetchAgent(
     process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
   );
-  const data = await FetchStaticData.fetchZoraIndexerItem(fetchAgent, {
-    tokenId: id,
-    collectionAddress: contract,
+  const data = await FetchStaticData.fetchZNFTGroupData({
+    fetchAgent,
+    ids: [id],
+    type: "id",
   });
 
-  const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(data);
+  const nft = data[0];
+
+  const metadata = await fetchAgent.fetchIPFSMetadata(nft.zoraNFT.metadataURI);
 
   return {
     props: {
       id,
-      name: tokenInfo.metadata?.name || null,
-      description: tokenInfo.metadata?.description || null,
-      image: tokenInfo.image || null,
-      initialData: data,
+      name: metadata.name || null,
+      description: metadata.description || null,
+      image: null,
+      initialData: { nft, metadata },
     },
   };
 };

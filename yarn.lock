@@ -1298,7 +1298,7 @@
     swr "^0.5.6"
     tslib "^2.2.0"
 
-"@zoralabs/nft-hooks@^0.8.0", "@zoralabs/nft-hooks@^0.8.1":
+"@zoralabs/nft-hooks@0.8.1", "@zoralabs/nft-hooks@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@zoralabs/nft-hooks/-/nft-hooks-0.8.1.tgz#7f66516c44eac6160b4a5d8bfff47544b0cda345"
   integrity sha512-Flc4s87KhAnXKxubyELVWfydc8FYu+uiZPl1pvIwvuTTsBPEAUKMTepGkkLivrJFPQ47a++hsUGMHRPnTvhDbA==
