@@ -10,12 +10,13 @@ import {
   MediaFetchAgent,
   NetworkIDs,
 } from "@zoralabs/nft-hooks";
+import { APP_TITLE, CONTRACT_ADDRESSES, CURATOR_ID } from "../utils/env-vars";
 
 export default function Home({ tokens }: { tokens: any }) {
   return (
     <IndexWrapper>
       <Head />
-      <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
+      <h1>{APP_TITLE}</h1>
       <AuctionsList tokens={tokens} />
     </IndexWrapper>
   );
@@ -25,11 +26,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const fetchAgent = new MediaFetchAgent(
     process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
   );
-  const contractAddress = process.env
-    .NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string;
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
-    curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as any,
-    collectionAddresses: contractAddress ? [contractAddress] : undefined,
+    curatorAddress: CURATOR_ID,
+    collectionAddresses: CONTRACT_ADDRESSES?.split(','),
     limit: 100,
     offset: 0,
   });

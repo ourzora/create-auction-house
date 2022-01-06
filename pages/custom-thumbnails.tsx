@@ -14,6 +14,7 @@ import { NFTPreview, PreviewComponents } from "@zoralabs/nft-components";
 import { useRouter } from "next/router";
 import { SyntheticEvent } from "react";
 import { media, buttonStyle, absoluteCentered } from "../styles/mixins";
+import { APP_TITLE, CONTRACT_ADDRESSES, CURATOR_ID } from "../utils/env-vars";
 
 // Create A Token Thumbnail
 const TokenThumbnail = ({
@@ -82,7 +83,7 @@ export default function Home({ tokens }: { tokens: any }) {
   return (
     <IndexWrapper>
       <Head />
-      <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
+      <h1>{APP_TITLE}</h1>
       <CustomAuctionsList tokens={tokens} />
     </IndexWrapper>
   );
@@ -93,10 +94,8 @@ export const getStaticProps: GetStaticProps = async () => {
     process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
   );
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
-    curatorAddress: process.env.NEXT_PUBLIC_CURATORS_ID as string,
-    collectionAddresses: [
-      process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string,
-    ],
+    curatorAddress: CURATOR_ID,
+    collectionAddresses: CONTRACT_ADDRESSES?.split(','),
     limit: 100,
     offset: 0,
   });

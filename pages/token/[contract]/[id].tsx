@@ -9,6 +9,7 @@ import { GetServerSideProps } from "next";
 
 import { PageWrapper } from "../../../styles/components";
 import Head from "../../../components/head";
+import { APP_TITLE } from "../../../utils/env-vars";
 
 const styles = {
   theme: {
@@ -23,8 +24,6 @@ type PieceProps = {
   image: string;
   initialData: any;
 };
-
-const APP_TITLE = process.env.NEXT_PUBLIC_APP_TITLE;
 
 export default function Piece({
   name,
