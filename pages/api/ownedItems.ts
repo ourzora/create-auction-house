@@ -1,4 +1,5 @@
 import { FetchStaticData, MediaFetchAgent } from "@zoralabs/nft-hooks";
+import { CONTRACT_ADDRESSES } from "../../utils/env-vars";
 
 module.exports = async (req: any, res: any) => {
   const { owner } = req.query;
@@ -13,9 +14,7 @@ module.exports = async (req: any, res: any) => {
   const tokens = await FetchStaticData.fetchUserOwnedNFTs(
     fetchAgent,
     {
-      collectionAddresses: process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS
-        ? (process.env.NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS as string).split(",")
-        : undefined,
+      collectionAddresses: CONTRACT_ADDRESSES?.split(","),
       userAddress: owner,
       limit: 200,
       offset: 0,

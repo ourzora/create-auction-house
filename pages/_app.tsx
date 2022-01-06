@@ -11,6 +11,7 @@ import { mediaConfigurationStyles } from '../styles/theme'
 import GlobalStyles from '../styles/GlobalStyles'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { NETWORK_ID, RPC_URL } from '../utils/env-vars'
 
 export default function CreateAuctionHouseApp({
   Component,
@@ -20,8 +21,8 @@ export default function CreateAuctionHouseApp({
     <>
       <GlobalStyles />
       <Web3ConfigProvider
-        networkId={parseInt(process.env.NEXT_PUBLIC_NETWORK_ID as string, 10)}
-        rpcUrl={process.env.NEXT_PUBLIC_RPC_URL as string || undefined}
+        networkId={parseInt(NETWORK_ID, 10)}
+        rpcUrl={RPC_URL}
         theme={{
           walletOption: css`
             color: #000 !important;
@@ -37,7 +38,7 @@ export default function CreateAuctionHouseApp({
         }}
       >
         <MediaConfiguration
-          networkId={process.env.NEXT_PUBLIC_NETWORK as NetworkIDs}
+          networkId={NETWORK_ID as NetworkIDs}
           style={mediaConfigurationStyles}
         >
           <Header />
