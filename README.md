@@ -32,6 +32,8 @@ We have included a script to help you with the initial configuration, simply run
 yarn setup
 ```
 
+### ENV VARS:
+
 ```bash
 
 NEXT_PUBLIC_APP_TITLE=[default app title]
