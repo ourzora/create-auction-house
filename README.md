@@ -25,19 +25,35 @@ npx create-next-app [project-name] -e https://github.com/ourzora/create-auction-
 ```
 
 The application accepts the below environment variables, you WILL need to specify the network ID along with either a Curator ID or a Contract Address:
+
+We have included a script to help you with the initial configuration, simply run the below command:
+
 ```bash
+yarn setup
+```
+
+```bash
+
 NEXT_PUBLIC_APP_TITLE=[default app title]
 NEXT_PUBLIC_DEFAULT_DESCRIPTION=[default meta description]
-NEXT_PUBLIC_BASE_URL=[production-url]
+
+# Erc721 Contracts you would like to work with, you may use multiple seperated buy commas.
+NEXT_PUBLIC_MAINNET_CONTRACTS=0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7
+NEXT_PUBLIC_TESTNET_CONTRACTS=0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4
 
 # NETWORK ID: 1 for Ethereum Mainnet / 4 for Rinkeby Testnet
-NEXT_PUBLIC_NETWORK_ID=1
+NEXT_PUBLIC_NETWORK_ID=4
 
+# OPTIONAL, use instead of NFT Contract to show NFTs associated with a user's address.
 NEXT_PUBLIC_CURATORS_ID=[The address of a curator or creator]
 
-NEXT_PUBLIC_TARGET_CONTRACT_ADDRESS=[the address of the token contract]
+# OPTIONAL - Best to set in deployment
+NEXT_PUBLIC_BASE_URL=[production-url]
 
+## configured RPC_URL (mainnet/rinkeby depending on NETWORK_ID) for walletconnect 
+## ~ Keep this private in a .env.local file. And configure directly in vercel for production.
 NEXT_PUBLIC_RPC_URL=[address to web3 rpc url provider]
+
 ```
 
 If you include a rpcUrl on the manage auction hooks provider it enables walletconnect,
