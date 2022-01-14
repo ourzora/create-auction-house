@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NEXT_PUBLIC_NETWORK_ID=1 next dev",
+    "dev": "next dev",
     "dev-testnet": "cross-env NEXT_PUBLIC_NETWORK_ID=4 next dev",
     "dev-mainnet": "cross-env NEXT_PUBLIC_NETWORK_ID=1 next dev",
     "build": "next build",

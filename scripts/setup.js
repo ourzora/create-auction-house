@@ -28,9 +28,20 @@ let interval
     {
       type: 'list',
       name: 'NEXT_PUBLIC_TESTNET_CONTRACTS',
-      message: `Which Testnet NFT Contract would you like to use, currently we support Rinkeby, default is the ZORA Rinkeby contract address. . For multiple contracts please seperate by comma.`,
+      message: `Which Testnet NFT Contract would you like to use, currently we support Rinkeby, default is the ZORA Rinkeby contract address. For multiple contracts please seperate by comma.`,
       initial: `0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4`,
       separator: ',',
+    },
+    {
+      type: 'select',
+      name: 'NEXT_PUBLIC_NETWORK_ID',
+      message: `Which network would you like to use as your default for development and deployment, Please select one.`,
+      choices: [
+
+        { title: 'Testnet', description: 'Rinkeby Testnet', value: '4' },
+        { title: 'Mainnet', description: 'ETH Mainnet', value: '1' },
+      ],
+      initial: 0,
     },
   ]
 
