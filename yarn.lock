@@ -1284,10 +1284,10 @@
     tslib "^2.0.3"
     typescript "^4.1.3"
 
-"@zoralabs/nft-components@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.3.1.tgz#dacdd96d1cd739eba1fe7774a8358291f7d6a9ce"
-  integrity sha512-P/ExpEDs1CkadD/Ybu5cOxF7iSLEQPA8z6k6tKLMW0psCkstXUghsJF/FEK7pim6HDZs02gv6cA/C793tQCxgg==
+"@zoralabs/nft-components@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@zoralabs/nft-components/-/nft-components-0.3.2.tgz#add44403b3d9648a4c91da175124521f4832418f"
+  integrity sha512-ycZvJlilkhrPnjPHnbCMTAFvtttZd69fZTSzfgiaYsQQFEvQAu9/DyP1gJ41BExlxHV5U1MubWyWsdp9P7L7hg==
   dependencies:
     "@emotion/css" "^11.1.3"
     "@types/react" "^17.0.5"
@@ -1990,11 +1990,6 @@ camelcase@^5.0.0:
 caniuse-lite@^1.0.30001202, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001228, caniuse-lite@^1.0.30001248:
   version "1.0.30001299"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001299.tgz"
-  integrity sha512-iujN4+x7QzqA2NCSrS5VUy+4gLmRd4xv6vbBBsmfVqTx8bLAD8097euLqQgKxSVLvxjSDcvF1T/i9ocgnUFexw==
-
-caniuse-lite@^1.0.30001299:
-  version "1.0.30001299"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001299.tgz#d753bf6444ed401eb503cbbe17aa3e1451b5a68c"
   integrity sha512-iujN4+x7QzqA2NCSrS5VUy+4gLmRd4xv6vbBBsmfVqTx8bLAD8097euLqQgKxSVLvxjSDcvF1T/i9ocgnUFexw==
 
 caseless@~0.12.0:
