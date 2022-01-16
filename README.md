@@ -39,7 +39,7 @@ yarn setup
 NEXT_PUBLIC_APP_TITLE=[default app title]
 NEXT_PUBLIC_DEFAULT_DESCRIPTION=[default meta description]
 
-# Erc721 Contracts you would like to work with, you may use multiple seperated buy commas.
+# Erc721 Contracts you would like to work with, you may use multiple seperated by commas.
 NEXT_PUBLIC_MAINNET_CONTRACTS=0xabEFBc9fD2F806065b4f3C237d4b59D9A97Bcac7
 NEXT_PUBLIC_TESTNET_CONTRACTS=0x7C2668BD0D3c050703CEcC956C11Bd520c26f7d4
 
