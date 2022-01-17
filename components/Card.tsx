@@ -1,0 +1,54 @@
+import React from 'react';
+import { css } from '@emotion/react';
+
+export const Card = (props:any) => {
+  const [image] = React.useState("");
+  const {token} = props;
+  console.log(token.nft)
+
+  return (
+      <div css={css`
+        background: #ffffff;
+        min-height: 350px;
+        min-width: 300px;
+        border: 1px solid white;
+        margin-right: 20px;
+        cursor: pointer;
+        -webkit-perspective: 600px;
+        -moz-perspective: 600px;
+        -ms-perspective: 600px;
+        perspective: 600px;
+        border: 2px solid black;
+        margin: 15px;
+        box-shadow: 10px 10px;
+        padding: 10px;
+        font-weight: bold;
+        box-shadow: 5px 5px rgb(0 0 0 / 50%);
+        &:hover {
+          box-shadow: 5px 5px pink;
+          border: 2px solid pink;
+          color: pink;
+        }`}>
+        <img src={image} height={'350px'} width='300px'/>
+        <div css={{padding: '20px'}}>
+          Noun
+        </div>
+        <div css={{display: 'flex', padding: '20px', justifyContent:'space-between'}}>
+          <div>
+            Reserve Price
+          </div>
+          <div>
+            Heighest Bid
+          </div>
+        </div>
+        <div css={{display: 'flex', padding: '20px', justifyContent:'space-between'}}>
+          <div>
+            --
+          </div>
+          <div>
+            --
+          </div>
+        </div>
+      </div>
+  )
+}

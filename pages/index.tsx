@@ -12,10 +12,12 @@ import {
 } from "@zoralabs/nft-hooks";
 
 export default function Home({ tokens }: { tokens: any }) {
+  console.log(process.env.FONT_URL);
+  console.log(process.env.FONT_URL);
+  
   return (
     <IndexWrapper>
       <Head />
-      <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
       <AuctionsList tokens={tokens} />
     </IndexWrapper>
   );
@@ -43,5 +45,13 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const IndexWrapper = styled(PageWrapper)`
+  @font-face {
+    font-family: 'Local Font';
+    src: local('Font Name'), local('FontName'),
+    url(${process.env.FONT_URL}) format('woff2'),
+    font-weight: 300;
+    font-style: normal;
+  };
   max-width: var(--content-width-xl);
+  background: #feefd5;  
 `;
