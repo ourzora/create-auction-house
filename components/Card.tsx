@@ -1,10 +1,11 @@
 import React from 'react';
+import { FetchStaticData } from "@zoralabs/nft-hooks";
 import { css } from '@emotion/react';
 
 export const Card = (props:any) => {
-  const [image] = React.useState("");
+  const [image] = React.useState("./../assets/logo.gif");
   const {token} = props;
-  console.log(token.nft)
+  const {tokenId} = token.nft;
 
   return (
       <div css={css`
@@ -29,9 +30,9 @@ export const Card = (props:any) => {
           border: 2px solid pink;
           color: pink;
         }`}>
-        <img src={image} height={'350px'} width='300px'/>
+        <img src={require(image)} height={'350px'} width='300px'/>
         <div css={{padding: '20px'}}>
-          Noun
+          Noun {tokenId}
         </div>
         <div css={{display: 'flex', padding: '20px', justifyContent:'space-between'}}>
           <div>
