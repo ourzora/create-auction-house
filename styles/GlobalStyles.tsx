@@ -59,8 +59,10 @@ export default function GlobalStyles() {
 
         /* DEFAULTS */
         /* LAYOUT */
+        @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap');
+        
         body * {
-          font-family: var(--font-a)!important;
+          font-family: 'Londrina Solid', cursive;
         }
 
         main {

@@ -14,11 +14,17 @@ export const AuctionsList = ({ tokens }: { tokens: any[] }) => {
       <div css={{minHeight: "100vh", minWidth: '100%', display: "flex", flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
         {
           tokens && tokens.map((token) => {
-            const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
+            const {tokenData, auctionData} = token.nft;
+            const {metadata, tokenId} = tokenData;
+            const {image} = metadata.json
+            console.log(auctionData);
+            //const {image} = token.nft.
               return (
                 <Card
-                  key={token.nft}
-                  token={token} />
+                  key={tokenId}
+                  id={tokenId}
+                  image={image}
+                />
               );
           })
         }
@@ -27,15 +33,16 @@ export const AuctionsList = ({ tokens }: { tokens: any[] }) => {
   );
 };
 
-{/*<NFTPreview
-              initialData={token}
-              key={tokenInfo.tokenId}
-              id={tokenInfo.tokenId}
-              contract={tokenInfo.tokenContract}
-              onClick={(evt) =>
-                router.push(
-                  `/token/${tokenInfo.tokenContract}/${tokenInfo.tokenId}`
-                )
-              }
-              useBetaIndexer={true}
-            />*/}
+{/*
+key={tokenInfo.tokenId}
+                  id={tokenInfo.tokenId}
+                  contract={tokenInfo.tokenContract}
+                  token={token}
+                  image={tokenInfo.image}
+                  onClick={() =>
+                    router.push(
+                      `/token/${tokenInfo.tokenContract}/${tokenInfo.tokenId}`
+                    )
+                  }
+                  useBetaIndexer={true}
+*/}

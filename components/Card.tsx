@@ -3,10 +3,6 @@ import { FetchStaticData } from "@zoralabs/nft-hooks";
 import { css } from '@emotion/react';
 
 export const Card = (props:any) => {
-  const [image] = React.useState("./../assets/logo.gif");
-  const {token} = props;
-  const {tokenId} = token.nft;
-
   return (
       <div css={css`
         background: #ffffff;
@@ -30,11 +26,11 @@ export const Card = (props:any) => {
           border: 2px solid pink;
           color: pink;
         }`}>
-        <img src={image} height={'350px'} width='300px'/>
-        <div css={{padding: '20px'}}>
-          Noun {tokenId}
+        <img src={props.image} height={'350px'} width='300px'/>
+        <div css={{paddingLeft: '20px'}}>
+          <h2>Noun {props.id}</h2>
         </div>
-        <div css={{display: 'flex', padding: '20px', justifyContent:'space-between'}}>
+        <div css={{color: 'gray', display: 'flex', paddingLeft: '20px', paddingRight: '20px', justifyContent:'space-between'}}>
           <div>
             Reserve Price
           </div>
@@ -42,7 +38,7 @@ export const Card = (props:any) => {
             Heighest Bid
           </div>
         </div>
-        <div css={{display: 'flex', padding: '20px', justifyContent:'space-between'}}>
+        <div css={{color: 'gray', paddingBottom: '20px', display: 'flex', paddingLeft: '20px', paddingRight: '20px', justifyContent:'space-between'}}>
           <div>
             --
           </div>

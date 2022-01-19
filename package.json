@@ -16,6 +16,7 @@
     "@zoralabs/simple-wallet-provider": "^0.0.9",
     "classnames": "^2.3.1",
     "next": "10.2.3",
+    "next-google-fonts": "^2.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "remark-parse": "^9.0.0",

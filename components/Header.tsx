@@ -23,7 +23,7 @@ export const Header = () => {
         justify-content: space-between;
       `}>
         <NavLink passHref href="/list">
-          <a>List</a>
+          <h2>List</h2>
         </NavLink>
         <div>
           <button 
@@ -32,7 +32,7 @@ export const Header = () => {
               cursor: pointer;
             `}
             onClick={() => buttonAction()}>
-            Connect Wallet
+            <h2>Connect Wallet</h2>
           </button>
         </div>
       </header>
