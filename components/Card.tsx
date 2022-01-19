@@ -30,7 +30,7 @@ export const Card = (props:any) => {
           border: 2px solid pink;
           color: pink;
         }`}>
-        <img src={require(image)} height={'350px'} width='300px'/>
+        <img src={image} height={'350px'} width='300px'/>
         <div css={{padding: '20px'}}>
           Noun {tokenId}
         </div>
