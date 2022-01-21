@@ -51,27 +51,31 @@ export const AuctionsList = ({ tokens }: { tokens: any[] }) => {
           </div>
       }
      </div>
-     <div css={{ display: "flex", flexDirection:'column', flexWrap: "wrap", justifyContent: "center", alignItems: 'center', paddingBottom: '100px' }}>
+     <div css={{ display: "flex", flexDirection:'column', flexWrap: "wrap", justifyContent: "center", alignItems:'center' }}>
       <div>
         <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
       </div>
       <div>
-        <h3>{process.env.NEXT_PUBLIC_DEFAULT_DESCRIPTION}</h3>
+        <p>{process.env.NEXT_PUBLIC_DEFAULT_DESCRIPTION}</p>
       </div>
      </div>
     <div css={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {tokens &&
         tokens.map((token) => {
-          //let image = ''
+          const reservePrice = "--"
+          const bid = "--"
           const tokenInfo = FetchStaticData.getIndexerServerTokenInfo(token);
           const { metadata } = tokenInfo
           const {image} = metadata;
+
           return (
             <Card 
               image={image}
               id={tokenInfo.tokenId}
               key={tokenInfo.tokenId}
               contract={tokenInfo.tokenContract}
+              reservePrice={reservePrice}
+              bid={bid}
             />
           );
         })}
