@@ -15,9 +15,10 @@ import {
 } from "@zoralabs/simple-wallet-provider";
 import { Fragment, useContext } from "react";
 import useSWR from "swr";
-
 import Head from "../components/head";
 import { PageWrapper } from "./../styles/components";
+import { NavLink } from '../components/NavLink'
+import { css } from '@emotion/react'
 
 const ListItemComponent = () => {
   const {
@@ -148,6 +149,7 @@ const MediaThumbnailPreview = ({
 };
 
 export default function List() {
+  const { buttonAction, actionText, connectedInfo } = useWalletButton();
   const { active, account } = useWeb3Wallet();
   return (
     <>
@@ -159,6 +161,43 @@ export default function List() {
           LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.NEXT_PUBLIC_APP_TITLE}`,
         }}
       >
+        <div css={{padding: '20px', display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+      <NavLink passHref href="/">
+        <h2
+        css={css`
+        border: none;
+        cursor: pointer;
+      `}>Home</h2>
+      </NavLink>
+      {
+            active ?
+            <div>
+            <button 
+              css={css`
+                border: none;
+                cursor: pointer;
+              `}
+              onClick={() => buttonAction()}>
+              <h2
+                css={css`
+                border: none;
+                cursor: pointer;
+              `}>Disconect Wallet</h2>
+            </button>
+          </div>
+            :
+            <div>
+            <button 
+              css={css`
+                border: none;
+                cursor: pointer;
+              `}
+              onClick={() => buttonAction()}>
+              <h2>Connect Wallet</h2>
+            </button>
+          </div>
+      }
+     </div>
         <ListWrapper>
           <ConnectWallet />
           {account &&

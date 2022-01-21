@@ -6,6 +6,7 @@ export default function GlobalStyles() {
   return (
     <Global
       styles={css`
+      @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap');
         :root {
           /* COLORS */
           --black: #000;
@@ -59,15 +60,17 @@ export default function GlobalStyles() {
 
         /* DEFAULTS */
         /* LAYOUT */
-        @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap');
-        
+        html{
+          background: #feefd5;
+        }
+
         body * {
+          overflow-x: hidden;
           font-family: 'Londrina Solid', cursive;
         }
 
         main {
-          width: 100%;
-          overflow-x: hidden;
+          background: #feefd5;
           position: relative;
           min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
         }

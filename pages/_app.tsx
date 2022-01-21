@@ -40,7 +40,6 @@ export default function CreateAuctionHouseApp({
           networkId={process.env.NEXT_PUBLIC_NETWORK as NetworkIDs}
           style={mediaConfigurationStyles}
         >
-          <Header />
           <main>
             <Component {...pageProps} />
           </main>

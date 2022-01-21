@@ -6,9 +6,14 @@ import {
   FetchStaticData,
 } from "@zoralabs/nft-hooks";
 import { GetServerSideProps } from "next";
-
+import { NETWORK_ID, APP_TITLE } from './../../../utils/env-vars'
 import { PageWrapper } from "../../../styles/components";
 import Head from "../../../components/head";
+import { NavLink } from './../../../components/NavLink'
+import {
+  useWalletButton,
+} from "@zoralabs/simple-wallet-provider";
+import { css } from '@emotion/react'
 
 const styles = {
   theme: {
@@ -24,8 +29,6 @@ type PieceProps = {
   initialData: any;
 };
 
-const APP_TITLE = process.env.NEXT_PUBLIC_APP_TITLE;
-
 export default function Piece({
   name,
   description,
@@ -33,6 +36,7 @@ export default function Piece({
   initialData,
 }: PieceProps) {
   const { query } = useRouter();
+  const { buttonAction, actionText, connectedInfo, active  } = useWalletButton();
 
   return (
     <>
@@ -42,9 +46,46 @@ export default function Piece({
         ogImage={image}
       />
       <MediaConfiguration
-        networkId={process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs}
+        networkId={NETWORK_ID as NetworkIDs}
         style={styles}
       >
+        <div css={{ padding: '20px', display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+      <NavLink passHref href="/">
+        <h2
+        css={css`
+        border: none;
+        cursor: pointer;
+      `}>Home</h2>
+      </NavLink>
+      {
+            active ?
+            <div>
+            <button 
+              css={css`
+                border: none;
+                cursor: pointer;
+              `}
+              onClick={() => buttonAction()}>
+              <h2
+                css={css`
+                border: none;
+                cursor: pointer;
+              `}>Disconect Wallet</h2>
+            </button>
+          </div>
+            :
+            <div>
+            <button 
+              css={css`
+                border: none;
+                cursor: pointer;
+              `}
+              onClick={() => buttonAction()}>
+              <h2>Connect Wallet</h2>
+            </button>
+          </div>
+      }
+     </div>
         <PageWrapper>
           <NFTFullPage
             useBetaIndexer={true}
@@ -70,7 +111,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const contract = params.contract as string;
 
   const fetchAgent = new MediaFetchAgent(
-    process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
+    NETWORK_ID as NetworkIDs
   );
   const data = await FetchStaticData.fetchZoraIndexerItem(fetchAgent, {
     tokenId: id,
