@@ -48,7 +48,7 @@ export const Card = (props:any) => {
             Reserve Price
           </div>
           <div>
-            Heighest Bid
+            Highest Bid
           </div>
         </div>
         <div css={{color: 'gray', paddingBottom: '20px', display: 'flex', paddingLeft: '20px', paddingRight: '20px', justifyContent:'space-between'}}>
