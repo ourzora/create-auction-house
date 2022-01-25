@@ -330,7 +330,7 @@ export const Style = {
       color: ${theme.linkColor};
       padding: ${theme.spacingUnit};
       margin: 0 -${theme.spacingUnit};
-      border-top: ${theme.borderStyle};
+      border-top: 2px solid black;
 
       :hover {
         color: pink;
@@ -398,6 +398,9 @@ export const Style = {
         color: ${theme.linkColor};
         overflow: hidden;
         cursor: pointer;
+        &:hover{
+          color: pink;
+        }
         &:active {
           transform: scale(0.98);
         }
@@ -454,6 +457,9 @@ export const Style = {
       css`
         text-decoration: none;
         color: ${theme.linkColor};
+        &:hover{
+          color: pink;
+        }
       `,
       theme.titleFont,
     ],
