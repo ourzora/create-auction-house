@@ -1,4 +1,5 @@
-import { NFTFullPage, MediaConfiguration } from "@zoralabs/nft-components";
+import { NFTFullPage } from "../../../components/@zora/nft-full";
+import {  MediaConfiguration } from "../../../components/@zora/context/MediaConfiguration";
 import { useRouter } from "next/router";
 import {
   MediaFetchAgent,

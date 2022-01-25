@@ -1,0 +1,25 @@
+import { ArgsTable, Meta } from "@storybook/addon-docs/blocks";
+import { MediaConfiguration } from "../index";
+import { Theme } from "../constants/theme";
+import { ThemeDummy } from "./theme-dummy";
+import { StringsDummy } from "./strings-dummy";
+
+<Meta title="Renderer/MediaConfiguration" component={MediaConfiguration} />
+
+# MediaConfiguration component
+
+This wrapper customizes styles, display strings, and media rendering configuration for the NFT display components.
+
+<ArgsTable of={MediaConfiguration} />
+
+# Theme Settings
+
+Override any of the theme settings used in these components by passing in specific keys below to override for the `style.theme` prop of the configuration element.
+
+<ArgsTable of={ThemeDummy} />
+
+# String Settings
+
+Override any of the text used in these components by passing in specific keys below to override for the `strings` prop of the configuration element.
+
+<ArgsTable of={StringsDummy} />

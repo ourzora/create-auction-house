@@ -1,0 +1,120 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="About/ServerRendering" />
+
+# Server-side rendering support
+
+`@zoralabs/nft-components` supports server-side rendering out of the box.
+
+This shows how to hydrate NFTs from the server side. They automatically re-fetch on
+the client side using `useSWR` to refresh for the latest data, allowing the next.js page
+to be cached safely.
+
+### Rendering single NFT in next.js
+
+```jsx
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { MediaFetchAgent, Networks } from "@zoralabs/nft-hooks";
+import { NFTPreview } from "@zoralabs/nft-components";
+import { Fragment } from "react";
+
+// Props are passed in from `getServerSideProps`
+export default function Home({ id, nft, metadata }) {
+  return (
+    <Fragment>
+      <Head>
+        <title>Demo Next NFT</title>
+      </Head>
+
+      <main className={styles.main}>
+        <NFTPreview initialData={{ nft, metadata }} id={id} />
+      </main>
+    </Fragment>
+  );
+}
+
+export async function getServerSideProps() {
+  // zNFT id to render
+  const id = "3158";
+  // Create the fetcher object
+  const fetcher = new MediaFetchAgent(Networks.MAINNET);
+  // Fetch the NFT information on the server-side
+  const nft = await fetcher.loadNFTData(id);
+  const metadata = await fetcher.fetchIPFSMetadata(nft.nft.metadataURI);
+
+  // Function required to remove `undefined` from JSON passed to client.
+  function prepareJson(json) {
+    return JSON.parse(JSON.stringify(json));
+  }
+
+  return {
+    props: prepareJson({
+        nft: nft,
+        metadata,
+        id,
+      })
+    ),
+  };
+}
+```
+
+### Rendering multiple NFTs in next.js
+
+```js
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { MediaFetchAgent, Networks } from "@zoralabs/nft-hooks";
+import { NFTPreview } from "@zoralabs/nft-components";
+import { Fragment } from "react";
+
+export default function Home({ nfts }) {
+  return (
+    <Fragment>
+      <Head>
+        <title>Demo Next NFT</title>
+      </Head>
+
+      <main className={styles.main}>
+        {nfts.map(({ metadata, nft, id }) => (
+          <NFTPreview initialData={{ metadata, nft }} id={id} />
+        ))}
+      </main>
+    </Fragment>
+  );
+}
+
+export async function getServerSideProps() {
+  const fetcher = new MediaFetchAgent(Networks.MAINNET);
+
+  // Function required to remove `undefined` from JSON passed to client.
+  function prepareJson(json) {
+    return JSON.parse(JSON.stringify(json));
+  }
+
+  async function fetchNFT(id) {
+    let nft;
+    let metadata;
+    // Includes error handling to allow for errors on the
+    //  server to not break the webpage and retry loading locally.
+    try {
+      nft = await fetcher.loadNFTData(id);
+    } catch {}
+    try {
+      metadata = await fetcher.fetchIPFSMetadata(nft.nft.metadataURI);
+    } catch {}
+    return { nft, metadata, id };
+  }
+
+  const nfts = await Promise.all([
+    fetchNFT("3158"),
+    fetchNFT("3156"),
+    fetchNFT("3155"),
+  ]);
+
+  return {
+    props: prepareJson({ nfts }),
+  };
+}
+```

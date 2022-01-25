@@ -1,0 +1,55 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Renderer/NFTDataProvider" />
+
+# NFTDataProvider Component
+
+This component sets data state and settings for fetching NFT data.
+
+The recommended use of this component is to inject data for building
+custom display components that don't fit within the preset NFTPreview and NFTFullPage components.
+
+Initial data is used for server-side hydration. If there is no `initialData`, the required data will be fetched client-side by the `@zoralabs/nft-hooks` library.
+
+```tsx
+type NFTDataProvider = {
+  id: string;
+  initialData: {
+    // Response from useNFT hook's data parameters
+    nft: useNFTType["data"];
+    // JSON object of the metadata of the NFT
+    metadata: useNFTMetadataType["metadata"];
+  };
+  children: React.ReactChildren;
+};
+```
+
+To access the context created by this wrapper component, the exported context `NFTDataContext` can be used.
+
+Example usage:
+
+```tsx
+import { useContext } from "react";
+import {
+  NFTFullPage,
+  FullComponents,
+  NFTDataContext,
+} from "@zoralabs/nft-components";
+
+const VerifyHash = () => {
+  const { nft } = useContext(NFTDataContext);
+  if (!nft.data?.contentHash) {
+    return null;
+  }
+  return <h3>Verification hash: {nft.data?.contentHash}</h3>;
+};
+
+const Page = () => (
+  <NFTFullPage id="YOUR_ID">
+    <h3>Media info:</h3>
+    <FullComponents.MediaInfo />
+    <VerifyHash />
+    <FullComponents.BidInfo />
+  </NFTFullPage>
+);
+```
