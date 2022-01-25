@@ -56,7 +56,7 @@ export const MediaInfo = ({ a11yIdPrefix, className }: MediaInfoProps) => {
           )}
           {data?.nft.creator && style.theme.showOwner && (
             <Fragment>
-              <dt {...getStyles("fullLabel")}>{getString("OWNER")}</dt>
+              <div {...getStyles("fullLabel")}>{getString("OWNER")}</div>
               <dd {...getStyles("fullOwnerAddress")}>
                 {data ? <AddressView address={data.nft.owner} /> : " "}
               </dd>

@@ -14,6 +14,7 @@ import {
 } from "../context/NFTDataProvider";
 import { useA11yIdPrefix } from "../utils/useA11yIdPrefix";
 import type { StyleProps } from "../utils/StyleTypes";
+import { css } from '@emotion/react'
 
 type NFTFullPageProps = Omit<NFTDataProviderProps, "children"> & {
   children?: React.ReactNode;
@@ -42,9 +43,8 @@ export const NFTFullPage = ({
     return (
       <>
         <MediaFull
-          
-        a11yIdPrefix={a11yIdPrefix} />
-        {/*<div {...getStyles("fullPageDataGrid")}>
+          a11yIdPrefix={a11yIdPrefix} />
+        <div {...getStyles("fullPageDataGrid")}>
           {style.theme.useCollectionTag && <CollectionTag />}
           <MediaInfo a11yIdPrefix={a11yIdPrefix} />
           <NFTProperties />
@@ -53,7 +53,7 @@ export const NFTFullPage = ({
           <ProofAuthenticity />
           <BidHistory showPerpetual={showPerpetual} />
           <CreatorEquity />
-        </div>*/}
+        </div>
       </>
     );
   };

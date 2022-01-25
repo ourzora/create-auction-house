@@ -26,7 +26,9 @@ export const CollectionTag = () => {
             : <Orb />
           }
         </div>
-        <span>{data && "openseaInfo" in data ? `${data.openseaInfo.asset_contract.name}` : 'Zora'}</span>
+        <span className={css`position: relative; display: flex; flex-direction: row; overflow: hidden;`}>
+            {data && "openseaInfo" in data ? `${data.openseaInfo.asset_contract.name}` : 'Zora'}
+        </span>
       </a>
     )
   }
@@ -36,6 +38,7 @@ export const CollectionTag = () => {
       position: relative;
       display: flex;
       flex-direction: row;
+      overflow: hidden;
     `}>
       {data ? getContent() : '...'}
     </div>

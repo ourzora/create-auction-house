@@ -164,11 +164,13 @@ export const Style = {
     fullDescription: (theme: ThemeOptionsType) => css`
       font-size: ${theme.fontSizeFull}px;
       margin: 10px 0;
+      overflow: hidden;
     `,
     fullOwnerAddress: (theme: ThemeOptionsType) => [
       css`
         font-size: ${theme.fontSizeFull}px;
         margin: 0;
+        overflow: hidden;
       `,
       theme.titleFont,
     ],
@@ -178,6 +180,7 @@ export const Style = {
         text-transform: uppercase;
         font-size: 14px;
         opacity: 0.5;
+        overflow: hidden;
       `,
       theme.bodyFont,
     ],
@@ -215,7 +218,7 @@ export const Style = {
       &:hover {
         :after {
           opacity: 1;
-          background-color: #f2f2f2;
+          color: pink;
         }
       }
       :after {
@@ -294,7 +297,7 @@ export const Style = {
     `,
     infoContainer: (theme: ThemeOptionsType, { bottomPadding }: any) =>
       css`
-        border: ${theme.borderStyle};
+        border: 2px solid black;
         border-radius: ${theme.defaultBorderRadius}px;
         padding: ${theme.spacingUnit} ${theme.spacingUnit}
           ${bottomPadding ? theme.spacingUnit : 0};
@@ -330,7 +333,7 @@ export const Style = {
       border-top: ${theme.borderStyle};
 
       :hover {
-        background-color: #f2f2f2;
+        color: pink;
       }
       :after {
         content: " ";
@@ -349,7 +352,7 @@ export const Style = {
       grid-template-rows: auto auto;
       grid-auto-columns: 1fr;
       padding: ${theme.spacingUnit};
-      border: ${theme.borderStyle};
+      border: 2px solid black;
       border-radius: ${theme.defaultBorderRadius}px;
       margin: ${theme.spacingUnit} 0 0;
     `,
@@ -384,7 +387,7 @@ export const Style = {
     // Collection Tag
     colectionTagWrapper: (theme: ThemeOptionsType) => [
       css`
-        border: ${theme.borderStyle};
+        border: 2px solid black;
         border-radius: 200px;
         transition: transform 0.1s ease-in-out;
         padding: calc(${theme.spacingUnit} / 4);
@@ -393,6 +396,7 @@ export const Style = {
         align-items: center;
         text-decoration: none;
         color: ${theme.linkColor};
+        overflow: hidden;
         cursor: pointer;
         &:active {
           transform: scale(0.98);
@@ -521,9 +525,13 @@ export const Style = {
       ${isFullPage ? "max-height: 70vh;" : "height: 100%;"}
       ${isFullPage ? "max-width: 100%;" : "width: 100%;"}
       display: block;
+      background: white;
+      padding: 20px;
       margin: 0 auto;
       flex-shrink: 1;
       min-width: 0px;
+      border: 2px solid black;
+      box-shadow: 5px 5px rgb(0 0 0 / 50%);
       object-fit: cover;
     `,
     mediaAudioWrapper: (_: ThemeOptionsType) => css`
