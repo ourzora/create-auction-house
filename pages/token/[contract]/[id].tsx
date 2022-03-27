@@ -6,7 +6,6 @@ import {
   FetchStaticData,
 } from "@zoralabs/nft-hooks";
 import { GetServerSideProps } from "next";
-import { NETWORK_ID, APP_TITLE } from './../../../utils/env-vars'
 import { PageWrapper } from "../../../styles/components";
 import Head from "../../../components/head";
 
@@ -35,12 +34,12 @@ export default function Piece({
   return (
     <>
       <Head
-        title={`${name} | ${APP_TITLE}`}
+        title={`${name} | ${process.env.APP_TITLE}`}
         description={description}
         ogImage={image}
       />
       <MediaConfiguration
-        networkId={NETWORK_ID as NetworkIDs}
+        networkId={process.env.NETWORK_ID as NetworkIDs}
         style={styles}
       >
         <PageWrapper>
@@ -68,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const contract = params.contract as string;
 
   const fetchAgent = new MediaFetchAgent(
-    NETWORK_ID as NetworkIDs
+    process.env.NETWORK_ID as NetworkIDs
   );
   const data = await FetchStaticData.fetchZoraIndexerItem(fetchAgent, {
     tokenId: id,

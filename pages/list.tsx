@@ -15,7 +15,6 @@ import {
 } from "@zoralabs/simple-wallet-provider";
 import { Fragment, useContext } from "react";
 import useSWR from "swr";
-import { APP_TITLE } from "../utils/env-vars";
 import Head from "../components/head";
 import { PageWrapper } from "./../styles/components";
 
@@ -156,7 +155,7 @@ export default function List() {
         renderMedia={MediaThumbnailPreview}
         strings={{
           LIST_MEDIA_HEADER: "List your NFT",
-          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${APP_TITLE}`,
+          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.APP_TITLE}`,
         }}
       >
         <ListWrapper>
