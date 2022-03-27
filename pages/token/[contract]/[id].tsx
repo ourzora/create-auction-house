@@ -34,12 +34,12 @@ export default function Piece({
   return (
     <>
       <Head
-        title={`${name} | ${process.env.APP_TITLE}`}
+        title={name || process.env.NEXT_PUBLIC_APP_TITLE}
         description={description}
         ogImage={image}
       />
       <MediaConfiguration
-        networkId={process.env.NETWORK_ID as NetworkIDs}
+        networkId={process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs}
         style={styles}
       >
         <PageWrapper>
@@ -67,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const contract = params.contract as string;
 
   const fetchAgent = new MediaFetchAgent(
-    process.env.NETWORK_ID as NetworkIDs
+    process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
   );
   const data = await FetchStaticData.fetchZoraIndexerItem(fetchAgent, {
     tokenId: id,

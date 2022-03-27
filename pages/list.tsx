@@ -155,7 +155,7 @@ export default function List() {
         renderMedia={MediaThumbnailPreview}
         strings={{
           LIST_MEDIA_HEADER: "List your NFT",
-          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.APP_TITLE}`,
+          LIST_MEDIA_DESCRIPTION: `Set the reserve price to list your NFT on ${process.env.NEXT_PUBLIC_APP_TITLE}`,
         }}
       >
         <ListWrapper>

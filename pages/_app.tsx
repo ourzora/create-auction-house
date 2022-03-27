@@ -18,8 +18,8 @@ export default function CreateAuctionHouseApp({
     <>
       <GlobalStyles />
       <Web3ConfigProvider
-        networkId={parseInt(process.env.NETWORK_ID as string, 10)}
-        rpcUrl={process.env.RPC_URL as string || undefined}
+        networkId={parseInt(process.env.NEXT_PUBLIC_NETWORK_ID as string, 10)}
+        rpcUrl={process.env.NEXT_PUBLIC_RPC_URL as string || undefined}
         theme={{
           walletOption: css`
             color: #000 !important;
@@ -35,7 +35,7 @@ export default function CreateAuctionHouseApp({
         }}
       >
         <MediaConfiguration
-          networkId={process.env.NETWORK_ID as NetworkIDs}
+          networkId={process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs}
           style={mediaConfigurationStyles}
         >
           <Header />
