@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { CONTRACT_ADDRESSES, NETWORK_ID, APP_TITLE, CURATOR_ID } from '../utils/env-vars'
 import { GetStaticProps } from "next";
 import Head from "../components/head";
 import { PageWrapper } from "../styles/components";
@@ -15,7 +14,7 @@ export default function Home({ tokens }: { tokens: any }) {
   return (
     <IndexWrapper>
       <Head />
-      <h1>{APP_TITLE}</h1>
+      <h1>{process.env.NEXT_PUBLIC_APP_TITLE}</h1>
       <AuctionsList tokens={tokens} />
     </IndexWrapper>
   );
@@ -23,11 +22,11 @@ export default function Home({ tokens }: { tokens: any }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const fetchAgent = new MediaFetchAgent(
-    NETWORK_ID as NetworkIDs
+    process.env.NEXT_PUBLIC_NETWORK_ID as NetworkIDs
   );
-  const contractAddress = CONTRACT_ADDRESSES as string;
+  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESSES as string;
   const tokens = await FetchStaticData.fetchZoraIndexerList(fetchAgent, {
-    curatorAddress: CURATOR_ID as any,
+    curatorAddress: process.env.NEXT_PUBLIC_CURATOR_ID as any,
     collectionAddresses: contractAddress ? contractAddress.split(',') : undefined,
     limit: 100,
     offset: 0,
